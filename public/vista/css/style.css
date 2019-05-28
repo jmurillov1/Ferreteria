@@ -39,8 +39,20 @@ img {
     border-radius: 75px;
 }
 
-.parte3 h5 {
-    margin: 0px;
+#agg{
+    margin-left: 25px;
+}
+
+#car{
+    width:92.5%;
+    margin:10px;
+    text-align: right;
+}
+
+#ctd{
+    width:100px;
+    height: 17px;
+    text-align: center;
 }
 
 #pro {

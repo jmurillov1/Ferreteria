@@ -23,25 +23,30 @@
             <input type="text" id="desc" name="desc" value="" placeholder="Ingrese su descripción ..." />
             <span id="mensajeDescripcion" class="error"></span>
             <br>
+            <label for="desc">Categoria(*)</label>
+            <select id="cat" name="cat">
+                <option value="default"> Seleccione una Categoria</option>
+                <?php
+                include '../../config/conexionBD.php';
+                $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $codigo = $row["fer_cat_id"];
+                        $desc = $row["fer_cat_desc"];
+                        echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
+                    }
+                }
+                ?>
+            </select>
+            <span id="mensajeCategoria" class="error"></span>
+            <br>
             <label for="precio">Precio(*)</label>
             <input type="text" id="precio" name="precio" value="" placeholder="Ingrese el precio ..." />
             <span id="mensajePrecio" class="error"></span>
             <br>
             <input type="submit" id="crear" name="crear" value="Aceptar" />
             <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
-            <?php
-            include '../../config/conexionBD.php';
-            $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $desc = $row["fer_cat_desc"];
-                    echo "<option>";
-                    echo "$desc";
-                    echo "</option>";
-                }
-            }
-            ?>
         </div>
         <div class=" parte2">
             <label for="imagen">Seleccione imagen a cargar</label>

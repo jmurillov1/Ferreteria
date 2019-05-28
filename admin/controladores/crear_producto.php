@@ -19,6 +19,7 @@
     $nombre = isset($_POST["nombre"]) ? mb_strtoupper(trim($_POST["nombre"]), 'UTF-8') : null;
     $desc = isset($_POST["desc"]) ? mb_strtoupper(trim($_POST["desc"]), 'UTF-8') : null;
     $precio = isset($_POST["precio"]) ? trim($_POST["precio"]) : null;
+    $cat = (int)isset($_POST["cat"]) ? trim($_POST["cat"]) : null;
 
     if ($_FILES["image"]["tmp_name"] != null) {
         $foto = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
@@ -27,7 +28,7 @@
     }
 
 
-    $sql = "INSERT INTO fer_producto VALUES(0, '$nombre', '$desc', $precio, '$foto', 'N', null,null);";
+    $sql = "INSERT INTO fer_producto VALUES(0, '$nombre', '$desc', $precio, '$foto',$cat, 'N', null,null);";
     if ($conn->query($sql) === TRUE) {
         echo "<p>Se ha creado los datos personales correctamemte !!!</p>";
     } else {
@@ -39,7 +40,7 @@
     }
     //cerrar la base de datos
     $conn->close();
-    echo "<a href='../vista/crear_producto.html'>Regresar</a>";
+    echo "<a href='../vista/crear_producto.php'>Regresar</a>";
     ?>
 </body>
 
