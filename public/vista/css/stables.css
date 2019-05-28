@@ -1,0 +1,20 @@
+#tbl {
+    width: 100%;
+    border: 1px solid;
+}
+
+th, td {
+    vertical-align: center;
+    border: 1px solid;
+    width: 20%;
+}
+
+#tf {
+    width: 100%;
+}
+
+#cant {
+    border: none;
+    margin: none;
+    width: 99%;
+}
