@@ -21,3 +21,9 @@ function menos() {
     document.getElementById("ctd").value = 1
   }
 }
+
+function agregar() {
+  var cant = Number(document.getElementById("sel").value)
+  var ncant = Number(document.getElementById("ctd").value)
+  document.getElementById("sel").value = cant + ncant
+}
