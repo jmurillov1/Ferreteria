@@ -1,7 +1,7 @@
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
-$apellido = $_SESSION['fer_usu_apellidos'];  
+$apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
 if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     header("Location: /SistemaDeGestion/public/vista/login.html");
@@ -15,11 +15,11 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <title>Principal Usuario</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
-    
+
 </head>
 
 <body>
-<header>
+    <header>
 
         <section>
             <nav id="moopio">
@@ -32,7 +32,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                             <li>...</li>
                         </ul>
                     </li>
-                    <li id="de"><a href="" > <img src="data:image/jpg;base64,<?php echo $foto ?>"  width="15" height=15 ><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
+                    <li id="de"><a href=""> <img src="data:image/jpg;base64,<?php echo $foto ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="modificarUsuario.php">MODIFICAR</a></li>
                             <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
@@ -50,8 +50,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             </nav>
         </section>
     </header>
-
-
     <h1>Bienvenido Usuario</h1>
 </body>
 

@@ -14,10 +14,11 @@
         $cantidad = $_GET['cantidad'];
         include '../../config/conexionBD.php';
 
-        $sql = "SELECT * FROM fer_pedido_detalle WHERE fer_ped_det_el='N';";
+        $sql = "SELECT * FROM fer_pedido_detalle WHERE fer_ped_det_el='N' AND fer_ped_det_suc_pro_id=$codigo;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                echo $row["fer_ped_det_suc_pro_id"] . "==" . $codigo;
                 if ($row["fer_ped_det_suc_pro_id"] == $codigo) {
                     $canti = $row["fer_ped_det_cant"] + $cantidad;
                     $sql = "UPDATE fer_pedido_detalle SET fer_ped_det_cant=$canti WHERE fer_ped_det_id=$row[fer_ped_det_id]";
