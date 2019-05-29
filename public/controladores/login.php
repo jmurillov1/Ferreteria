@@ -36,7 +36,7 @@ session_start();
             $_SESSION['fer_usu_nombres'] = $rows['fer_usu_nombres'];
             $_SESSION['fer_usu_apellidos'] = $rows['fer_usu_apellidos'];
             $_SESSION['fer_usu_foto']= $rows['fer_usu_foto'];
-            header("Location:../../admin/vista/admin/usuarios.php");
+            header("Location:../../admin/vista/admin/index.php");
         }
     } else {
         header("Location:../vista/login.html");
