@@ -28,8 +28,10 @@
     $result1 = $conn->query($sql1);
     if ($result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
-            $ident = $row["MIN(fer_suc_id)"];
+            $cab = $row["MAX(fer_suc_id)"];
         }
+    }else{
+        $cab=0;
     }
     ?>
     <select id="sucursal" name="sucursal">
