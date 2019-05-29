@@ -24,6 +24,13 @@
             $ident = $row["MIN(fer_suc_id)"];
         }
     }
+    $sql1 = "SELECT MAX(fer_ped_cab_id) FROM fer_pedido_cabecera WHERE fer_suc_el='N';";
+    $result1 = $conn->query($sql1);
+    if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+            $ident = $row["MIN(fer_suc_id)"];
+        }
+    }
     ?>
     <select id="sucursal" name="sucursal">
         <?php

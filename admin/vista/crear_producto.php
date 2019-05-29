@@ -32,6 +32,7 @@
                     while ($row = $result->fetch_assoc()) {
                         $codigo = $row["fer_cat_id"];
                         $desc = $row["fer_cat_desc"];
+                        echo $desc;
                         echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
                     }
                 }
