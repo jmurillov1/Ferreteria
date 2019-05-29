@@ -1,6 +1,6 @@
 <?php
 
-$servername = "localhost";
+$servername = "192.168.0.118";
 $username = "root";
 $password = "cuenca";
 $dbname = "ferreteria";
