@@ -25,8 +25,7 @@
         }
     }
     ?>
-    <select id="sucursal" name="sucursal" onclick="cargar()">
-        <option value="default"> Seleccione una Sucursal</option>
+    <select id="sucursal" name="sucursal">
         <?php
         $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
         $result = $conn->query($sql);
@@ -34,38 +33,53 @@
             while ($row = $result->fetch_assoc()) {
                 $codigo = $row["fer_suc_id"];
                 $desc = $row["fer_suc_direccion"];
-                echo "<option  id='item' value='" . $codigo . "'>" . $desc . "</option>";
+                echo "<option onclick='cargar($codigo)' id='item$codigo' value='" . $codigo . "'>" . $desc . "</option>";
             }
         }
         ?>
     </select>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
     <img id="imagen2" src="../../../public/vista/images/lupa.png">
-    <?php
-    $sql = "SELECT * FROM fer_suc_pro WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $codigo = $row["fer_pro_id"];
-            $producto = $row["fer_suc_pro_prod_id"];
-            $descripcion = $row["fer_pro_desc"];
-            $precio = $row["fer_pro_precio"];
-            $foto = $row["fer_pro_foto"];
-            echo "<section id='pro'>";
-            echo "<div class='parte1'>";
-            echo $nombre . "<br>";
-            echo $descripcion  . "<br>";
-            echo "$" . substr($precio, 0, 4)  . "<br>";
-            echo "</div>";
-            echo "<div class='parte2'><img id='foto' src='data:image/*;base64," . base64_encode($foto) . "' alt='titulo foto' /></div>";
-            echo "<div class='parte3'><button id='menos' onclick='menos($codigo)'>-</button><input class='ctd' name='ctd' id='ctd$codigo' value='1' /><button id='mas' onclick='mas($codigo)'>+</button> <br><button class='agg' id='agg$codigo' onclick='agregar($codigo)'>Agregar Carrito</button></div>";
-            echo "</section>";
+    <article id="info">
+        <?php
+        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $codigo = $row["fer_suc_pro_id"];
+                $stock = $row["fer_suc_pro_stock"];
+                $producto = $row["fer_suc_pro_prod_id"];
+                $sqlp = "SELECT * FROM fer_producto WHERE fer_pro_el='N' AND fer_pro_id=$producto;";
+                $resultp = $conn->query($sqlp);
+                if ($resultp->num_rows > 0) {
+                    while ($rowp = $resultp->fetch_assoc()) {
+                        $nombre = $rowp["fer_pro_nombre"];
+                        $descripcion = $rowp["fer_pro_desc"];
+                        $precio = $rowp["fer_pro_precio"];
+                        $foto = $rowp["fer_pro_foto"];
+                    }
+                }
+                echo "<section id='pro'>";
+                echo "<div class='parte1'>";
+                echo $nombre . "<br>";
+                echo $descripcion  . "<br>";
+                echo "$" . substr($precio, 0, 4)  . "<br>";
+                echo "</div>";
+                echo "<div class='parte2'><img id='foto' src='data:image/*;base64," . base64_encode($foto) . "' alt='titulo foto' /></div>";
+                echo "<div class='parte3'>";
+                echo "<button id='menos' onclick='menos($codigo)'>-</button>";
+                echo "<input class='ctd' name='ctd' id='ctd$codigo' value='1' />";
+                echo "<button id='mas' onclick='mas($codigo)'>+</button> <br>";
+                echo "<button class='agg' id='agg$codigo' onclick='agregar($codigo)'>Agregar Carrito</button>";
+                echo "</div>";
+                echo "</section>";
+            }
+        } else {
+            echo  "<div>No Hay Productos</div>";
         }
-    } else {
-        echo  "<div>No Hay Productos</div>";
-    }
-    $conn->close();
-    ?>
+        $conn->close();
+        ?>
+    </article>
     <footer>
         <h5> Copyright </h5>
         <h5> FerTech </h5>

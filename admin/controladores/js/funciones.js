@@ -25,12 +25,14 @@ function menos(cod) {
 
 function agregar(cod) {
   var cant = Number(document.getElementById("sel").value)
-
-  if (cant != 0) {
+  console.log(cod)
+  if (cant == 0 || cant != 0) {
     var ncant = Number(document.getElementById("ctd" + cod).value)
+    console.log(ncant)
     tot = cant + ncant
     document.getElementById("sel").value = cant + ncant
-    if (ncant == "") {
+    location.href = "../controladores/anadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant;
+    /*if (ncant == "") {
     } else {
       if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -39,20 +41,35 @@ function agregar(cod) {
         // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
-      xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 & this.status == 200) {
-          alert("llegue");
-        }
+      //xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 & this.status == 200) {
+        alert("llegue");
       };
-      xmlhttp.open("GET", "../controladores/añadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true);
+      xmlhttp.open("GET", "../controladores/anadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true);
       xmlhttp.send();
     }
-    return false;
+    return false;*/
   }
 }
-function cargar(){
-  var se= document.getElementById("item").value
+
+function cargar(cod) {
+  var se = document.getElementById("item" + cod).value
   console.log(se)
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      alert("llegue");
+    }
+  };
+  xmlhttp.open("GET", "../controladores/listar_productos_sucursal.php?codigo=" + cod, true);
+  xmlhttp.send();
+  return false;
 }
 
 function val() {
