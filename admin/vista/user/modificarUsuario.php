@@ -144,7 +144,7 @@ $conn->close();
         </section>
 
         <section id="fot1">
-            <h2>© Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
+            <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
     </footer>
 </html>
