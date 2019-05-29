@@ -4,7 +4,7 @@ $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
 if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
-    header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
 <!DOCTYPE html>
