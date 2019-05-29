@@ -32,12 +32,12 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                             <li>...</li>
                         </ul>
                     </li>
-                    <li id="de"><a href="" > <img src="data:image/jpg;base64,<?php echo $foto ?>"  width="15" height=15 ><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
+                    <li id="de"><a href="" > <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
                         <ul>
                             <li><a href="modificarUsuario.php">MODIFICAR</a></li>
                             <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
                             <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
-                            <li><a href="../../../config/cerrarSesionUser.php">CERRAR SESION</a></li>
+                            <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
                     </li>
                     <li id="de"><a href="">SUCURSAL</a>
