@@ -16,6 +16,7 @@
         <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
     </a>
     <?php
+    session_start();
     include '../../config/conexionBD.php';
     $sql1 = "SELECT MIN(fer_suc_id) FROM fer_sucursal WHERE fer_suc_el='N';";
     $result1 = $conn->query($sql1);
@@ -32,6 +33,7 @@
         }
     }else{
         $cab=0;
+        
     }
     ?>
     <select id="sucursal" name="sucursal">
