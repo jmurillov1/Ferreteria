@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
     <link href="css/estilo.css" rel="stylesheet" /> 
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script> 
     <a href="index.html"><img id="cen" src="../imagenes/logo.png"></a>\
 </head>
 
@@ -49,15 +49,30 @@
 
     <h1>Crear Usuario</h1>
     <section id="form">
-        <form method="POST" action="../controladores/crearUsuario.php" enctype="multipart/form-data">
-            <label for="cedula">Cedula:</label><input id="in" type="text" name="cedula" id="cedula">
-            <label for="nombres">Nombres:</label><input id="in" type="text" name="nombres" id="nombres">
-            <label for="apellidos">Apellidos:</label><input id="in" type="text" name="apellidos" id="apellidos">
+        <form method="POST" action="../controladores/crearUsuario.php" onsubmit="return validarCamposObligatorios()" enctype="multipart/form-data">
+            <label for="cedula">Cedula:</label><input id="in" type="text" name="cedula" id="cedula" onkeyup = "validarNumeros(this)" onblur = " ValidacionDeCedula(this)">
+            <span id="mensajeCedula"></span> 
+            <br>
+            <label for="nombres">Nombres:</label><input id="in" type="text" name="nombres" id="nombres" onkeyup="validarLetras(this)">
+            <span id="mensajeNombres"></span> 
+            <br>
+            <label for="apellidos">Apellidos:</label><input id="in" type="text" name="apellidos" id="apellidos" onkeyup="validarLetras(this)">
+            <span id="mensajeApellidos"></span> 
+            <br>
             <label for="direccion">Direccion:</label><input id="in" type="text" name="direccion" id="direccion">
-            <label for="telefono">Telefono:</label><input id="in" type="text" name="telefono" id="telefono">
+            <span id="mensajeDireccion"></span>
+            <br>
+            <label for="telefono">Telefono:</label><input id="in" type="text" name="telefono" id="telefono" onkeyup="validarNumeros(this)">
+            <span id="mensajeDireccion"></span>
+            <br>
             <label for="fechaDeNacimiento">Fecha De Nacimiento:</label><input id="in" type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+            <span id="mensajeFechaNacimiento"></span>
+            <br>
             <label for="correo">Correo:</label><input id="in" type="text" name="correo" id="correo">
+            <span id="mensajeCorreo"></span>
+            <br>
             <label for="contraseña">Contraseña:</label><input id="in" type="password" name="contrasena" id="contrasena">
+            <span id="mensajeContraseña"></span>
             <br>
             <label for="imagen">Seleccione imagen a cargar</label>
             <input type="file" id="uploadImage1" name="uploadImage1" onchange="previewImage(1)" accept="image/*" />
