@@ -16,5 +16,6 @@ th, td {
 #cant {
     border: none;
     margin: none;
-    width: 99%;
+    text-align: center;
+    width: 74%;
 }

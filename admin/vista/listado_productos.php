@@ -12,8 +12,7 @@
     <header class="cabis">
         <h4>Productos</h4>
     </header>
-
-    <a href='pedido_detalle.php' class='carr'>
+    <a href="pedido_detalle.php" class="carr">
         <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
     </a>
     <!--<input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
@@ -36,8 +35,9 @@
             echo "$" . substr($precio, 0, 4)  . "<br>";
             echo "</div>";
             echo "<div class='parte2'><img id='foto' src='data:image/*;base64," . base64_encode($foto) . "' alt='titulo foto' /></div>";
-            echo "<div class='parte3'><button id='menos' onclick='menos()'>-</button><input id='ctd' value='1' /><button id='mas' onclick='mas()'>+</button> <br><button id='agg' onclick='agregar()'>Agregar Carrito</button></div>";
+            echo "<div class='parte3'><button id='menos' onclick='menos($codigo)'>-</button><input class='ctd' name='ctd' id='ctd$codigo' value='1' /><button id='mas' onclick='mas($codigo)'>+</button> <br><button class='agg' id='agg$codigo' onclick='agregar($codigo)'>Agregar Carrito</button></div>";
             echo "</section>";
+            echo "<input type='text' id='final$codigo' onfocus='div($codigo)'/>";
         }
     } else {
         echo  "<div>No Hay Productos</div>";

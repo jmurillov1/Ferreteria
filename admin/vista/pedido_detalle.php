@@ -6,7 +6,7 @@
     <title>Gestión de usuarios</title>
     <link href="../../../public/vista/css/stables.css" rel="stylesheet" type="text/css" />
     <link href="../../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../controladores/user/js/metodos.js"> </script>
+    <!--<script type="text/javascript" src="../../controladores/user/js/metodos.js"> </script>-->
 </head>
 
 <body>
@@ -31,18 +31,7 @@
             <th>Subtotal</th>
         </tr>
         <?php
-                echo "<tr>";
-                echo "   <td>" . $fecha . "</td>";
-                echo "   <td>" . $correodes . "</td>";
-                echo "   <td>" . $asunto . "</td>";
-                echo "   <td> <a href='../../controladores/user/lecturamen.php?codigo=$codigo&url=$url'> Ir </a> </td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr>";
-            echo "   <td colspan='7'> No existen correos registrados al usuario </td>";
-            echo "</tr>";
-        }
+
         $conn->close();
         ?>
     </table>

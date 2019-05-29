@@ -39,36 +39,51 @@ img {
     border-radius: 75px;
 }
 
-#agg{
+#agg {
     margin-left: 25px;
 }
 
-#sel{
-    width:25px;
-    border:none;
+#sel {
+    width: 25px;
+    border: none;
     background-color: transparent;
 }
 
-#car{
-    width:92.5%;
-    margin:10px;
+#car {
+    width: 92.5%;
+    margin: 10px;
     text-align: right;
 }
 
-.carr{
+.carr {
     text-decoration: none;
 }
 
-#ctd{
-    width:100px;
+.ctd {
+    width: 100px;
     height: 17px;
     text-align: center;
 }
 
+#pedido {
+    width: 100%;
+}
+
 #pro {
     border-top: 1px solid red;
-    height:150px;
+    height: 150px;
     border-bottom: 1px solid red;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#menosf{
+    width: 15px;
+    height: 15px;
+}
+
+#masf{
+
 }
 
 .parte2 #uploadPreview1 {
