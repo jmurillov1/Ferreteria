@@ -21,6 +21,6 @@ if ($conn->query($sql) === TRUE) {
     }
     echo "Error:" . $sql . "<br>" . $conn->errno . "br";
 }
-echo "<a href='../vista/crear_usuario.html'>Regresar</a>";
+echo "<a href='../vista/crearUsuario.html'>Regresar</a>";
 $conn->close();
 ?>
