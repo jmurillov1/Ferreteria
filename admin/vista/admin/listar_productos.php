@@ -13,7 +13,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <meta charset="UTF-8">
     <title>Listar Productos</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
-    <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
@@ -91,7 +91,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                 <?php
                 echo "   <td>" . $row2['fer_cat_desc'] . "</td>";
                 echo "   <td>" . "<a href = 'actualizar_Producto.php?codigo=" . $row['fer_pro_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = 'eliminar.php?codigo=" . $row['fer_pro_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_producto.php?codigo=" . $row['fer_pro_id'] . "'>" . "Eliminar</a>" . "</td>";
                 echo "</tr>";
             }
             $conn->close();

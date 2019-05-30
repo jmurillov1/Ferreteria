@@ -13,8 +13,8 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Actualizar Producto</title>
-    <link href="../../public/vista/css/estilo.css" rel="stylesheet" />
-    <a href="../../public/vista/index.html"><img id="cen" src="../../public/imagenes/logo.png"></a>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
@@ -60,9 +60,9 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </nav>
         </section>
     </header>
-
+<h1>Actualizar Producto</h1>
     <?php
-    include "../../config/conexionBD.php";
+    include "../../../config/conexionBD.php";
     $codigo_pro = $_GET['codigo'];
     $sql = "SELECT * FROM fer_producto WHERE fer_pro_id = $codigo_pro AND fer_pro_el = 'N'";
     $result = $conn->query($sql);
@@ -70,7 +70,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         while ($row = $result->fetch_assoc()) {
             $precio = $row["fer_pro_precio"];
             ?>
-            <form id="form" method="POST" enctype="multipart/form-data" action="../controladores/crear_producto.php">
+            <form id="form" method="POST" enctype="multipart/form-data" action="../controladores/admin/actualizar_producto.php">
                 <div class=" parte1">
                     <label for="nombre">Nombre(*)</label>
                     <input class="in" type="text" id="nombre" name="nombre" value="<?php echo $row["fer_pro_nombre"]; ?>" />
@@ -84,7 +84,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     <select id="cat" name="cat">
                         <option value="default"></option>
                         <?php
-                        include '../../config/conexionBD.php';
+                        include '../../../config/conexionBD.php';
                         $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
@@ -123,6 +123,48 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 }
 $conn->close();
 ?>
+
+
+<footer>
+        <section id="pa">
+            <h2>
+                INFORMACIÓN DE CONTACTO
+            </h2>
+            <h3>
+                DIRECCION
+            </h3>
+            <h4>
+                Av. Gil Ramirez Davalos y Eliat Liut
+            </h4>
+            <h3>
+                TELEFONO
+            </h3>
+            <h3>
+                0981241115 - 0989224223
+            </h3>
+            <h3>
+                EMAIL
+            </h3>
+            <h4>
+                servicio@tupernoferreteria.com
+            </h4>
+
+        </section>
+        <section id="fot">
+            <h2>REDES SOCIALES</h1>
+                <div>
+                    <ul>
+                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                    </ul>
+                </div>
+        </section>
+        <section id="fot1">
+            <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
+        </section>
+    </footer>
 </body>
 
 </html>
