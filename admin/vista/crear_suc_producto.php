@@ -32,7 +32,7 @@
             </select>
             <span id="mensajeProducto" class="error"> </span>
             <br>
-            <label for="stock">Stock(*)</label>
+            <label for="stock">Stock(*)</label> 
             <input class="in" type="text" id="stock" name="stock" value="" placeholder="Ingrese su descripción ..." />
             <span id="mensajeStock" class="error"></span>
             <br>

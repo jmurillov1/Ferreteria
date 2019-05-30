@@ -1,5 +1,3 @@
-# Ferreteria
-
 1.	Para realizar el diseño de nuestra página utilizamos la herramienta Visual Studio. Lo primero que realizamos es la parte principal de nuestra página, es la información de nuestra ferretería, quienes somos, la misión y visión.
 Creamos el encabezado. Utilizamos la etiqueta <title> para poner un nombre a nuestra pagina web. 
 Con la etiqueta <link> y con el atributo href especificamos la url de nuestro archivo donde se encuentra el estilo para la página.
@@ -31,3 +29,39 @@ Cerrar cesión si es usuario y luego me regresa a la página de login.
  
 Cerrar cesión si es administrador y luego me regresa al login.
     
+6.	En la carpeta vista tenemos el archivo crear_categoria.html. aquí tenemos la misma estructura del index, en la etiqueta label, agregamos la descripción.
+ 
+6.1	En la carpeta de controladores creamos crear_categoria.php. Conectamos a la base de datos y luego vamos a ingresar datos en la tabla fer_categoria. 
+ 
+7.	Ahora vamos a insertar un nuevo producto. Para crear un producto en la carpeta controladores debemos crear un archivo.php.
+Vamos a tomar los datos que la persona ingrese.
+Al momento que la persona seleccione una categoría conectamos con la base de datos y verificamos la categoría que tenemos en la base.    
+   
+Ahora en la carpeta controlador creamos el crear_producto.php, aquí vamos a insertar los productos a la base de datos.
+Con el $_FILES vamos a mandar imágenes en la base y luego guardamos en una variable.  
+    
+8.	Es para realizar el pedido. Nos conectamos con la base de datos. Creamos una tabla para mostrar los detalles. Utilizamos la etiqueta <table> con un id para dar estilo a la tabla. Con le etiqueta <th> definimos los nombres de las celdas de la cabecera de una columna. 
+ 
+ 
+9.	En este archivo.php vamos a conectar con el controlador donde allí vamos a controlar a los productos. Al momento que seleccionamos un producto, allí vamos a ingresar a la base de datos y vamos a poder seleccionar productos.
+También al momento de seleccionar la sucursal conectamos con la base de datos, la cual me mostrara la dirección.     
+ 
+10.	En la carpeta controladores tenemos el archivo.php para los productos. Igualmente nos conectamos con la base de datos. Aquí tenemos el stock, la sucursal y el producto. Luego se ingresa en la tabla fer_sucursal_producto los datos.   
+ 
+11.	De esta manera vamos a crear la sucursal, igualmente se crea un archivo.php en controladores, la cual allí vamos a pasar los datos a la base.  
+ 
+12.	Nos conectamos a la base con el include. Obtenemos los datos en las variables $direccion $telefono y luego ingresamos en la tabla fer_sucursal.    
+ 
+13.	Para los usuarios vamos a realiza el CRUD. Tenemos un menú del usuario. Donde podemos hacer el CRUD. Ponemos la imagen del usuario en miniatura la cual nos muestra la foto, el nombre y el apellido del usuario.      
+ 
+14.	Nos conectamos con la base de datos. Obtenemos el código y guardamos en la variable $codigo. Realizamos la sentencia donde todos los campos de la tabla fer_usuario, el código de ser igual al código de la base de datos.  
+Mostramos todos los datos del usuario y tenemos un boto donde al momento que se realice alguna modificación aplastamos el botón y los datos mandan al modificarUsuario.php que se encuentra en el controlador. 
+ 
+15.	Estamos en la carpeta controlador y aquí tenemos el modificarUsuario.php. Ingresamos a este archivo porque si es USER. Nos conectamos a la base de datos. Con el Update vamos a actualizar los campos de la tabla fer_ususario.     
+ 
+ 
+16.	Para modificar la contraseña debemos hacer que el usuario ingrese la contraseña actual, y luego pedimos que ingrese la contraseña nueva. Al momento que presionamos el botón mandamos la nueva información al controlador donde allí se encuentra para realizar la modificación de la contraseña y agregar a la base de datos. 
+ 
+17.	Guardamos los datos en las variables $contrasena1 y $contrasena2. Utilizamos el MD5 para que la contraseña se encripte. Luego utilizamos el Update en la tabla fer_usuario para realizar la modificación de la tabla.     
+ 
+18.	 

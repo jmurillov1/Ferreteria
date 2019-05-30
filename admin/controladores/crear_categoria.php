@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php
+    <?php  
     //incluir conexión a la base de datos
     include '../../config/conexionBD.php';
     $desc = isset($_POST["desc"]) ? mb_strtoupper(trim($_POST["desc"]), 'UTF-8') : null;
