@@ -28,9 +28,14 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li id="ul"><a href="usuarios.php">USUARIOS</a>
                     </li>
+                    <li id="ul"><a href="">CATEGORIA</a>
+                        <ul>
+                            <li><a href="../crear_categoria.html">CREAR</a></li>
+                        </ul>
+                    </li>
                     <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
+                            <li><a href="../crear_sucursal.html">CREAR</a></li>
                             <li><a href="">LISTAR</a></li>
                         </ul>
                     </li>
@@ -42,7 +47,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li><a href="">PRODUCTOS SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
+                            <li><a href="../crear_suc_producto.php">CREAR</a></li>
                             <li><a href="">LISTAR</a></li>
                         </ul>
                     </li>

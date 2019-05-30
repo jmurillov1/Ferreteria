@@ -2,7 +2,6 @@
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
-$foto = $_SESSION['fer_usu_foto'];
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
@@ -93,7 +92,6 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                 echo "   <td>" . $row2['fer_cat_desc'] . "</td>";
                 echo "   <td>" . "<a href = 'actualizar_Producto.php?codigo=" . $row['fer_pro_id'] . "'>" . "Actualizar</a>" . "</td>";
                 echo "   <td>" . "<a href = 'eliminar.php?codigo=" . $row['fer_pro_id'] . "'>" . "Eliminar</a>" . "</td>";
-                echo "   <td>" . "<a href = 'cambiar_contraseña.php?codigo=" . $row['fer_pro_id'] . "'>" . "Actualizar Contraseña</a>" . "</td>";
                 echo "</tr>";
             }
             $conn->close();

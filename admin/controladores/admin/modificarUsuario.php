@@ -67,8 +67,6 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         echo "<a href='../../vista/admin/index.php'>Regresar</a>";
         $conn->close();
     }
-
-
     ?>
 </body>
 

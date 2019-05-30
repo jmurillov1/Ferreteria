@@ -14,6 +14,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Gestion de Ferretería</title>
+    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
@@ -62,13 +63,9 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </header>
 
-
-
-
-
     <h1>Insertar Nuevo Producto</h1>
 
-    <form id="form" method="POST" enctype="multipart/form-data" action="../controladores/crear_producto.php">
+    <form id="form" method="POST" enctype="multipart/form-data" action="../../controladores/admin/crear_producto.php">
         <div class=" parte1">
             <label for="nombre">Nombre(*)</label>
             <input class="in" type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el nombre del producto ..." />

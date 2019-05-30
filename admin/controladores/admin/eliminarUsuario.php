@@ -4,6 +4,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
