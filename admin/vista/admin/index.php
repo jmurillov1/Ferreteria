@@ -36,6 +36,12 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                             <li><a href="">LISTAR</a></li>
                         </ul>
                     </li>
+                    <li><a href="">PRODUCTOS</a>
+                        <ul>
+                            <li><a href="crear_producto.php">CREAR</a></li>
+                            <li><a href="listar_productos.php">LISTAR</a></li>
+                        </ul>
+                    </li>
                     <li><a href="">PRODUCTOS SUCURSAL</a>
                         <ul>
                             <li><a href="">CREAR</a></li>

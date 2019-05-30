@@ -1,14 +1,71 @@
+<?php
+session_start();
+$nombre = $_SESSION['fer_usu_nombres'];
+$apellido = $_SESSION['fer_usu_apellidos'];
+$foto = $_SESSION['fer_usu_foto'];
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
+    header("Location: /Ferreteria/public/vista/login.html");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Gestion de Ferretería</title>
-    <link href="../../public/vista/css/estilo.css" rel="stylesheet" />
-    <a href="../../public/vista/index.html"><img id="cen" src="../../public/imagenes/logo.png"></a>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
+<header>
+
+        <section>
+            <nav id="moopio">
+                <ul id="menuPrincipal">
+                    <li><a href="">PEDIDOS</a>
+                    </li>
+                    <li><a href="">FACTURAS</a>
+                    </li>
+                    <li><a href="usuarios.php">USUARIOS</a>
+                    </li>
+                    <li><a href="">SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">PRODUCTOS</a>
+                        <ul>
+                            <li><a href="crear_producto.php">CREAR</a></li>
+                            <li><a href="listar_productos.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">PRODUCTOS SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="de"><a href="" > <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
+                        <ul>
+                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
+                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
+                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
+                            <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+
+
+
+
     <h1>Insertar Nuevo Producto</h1>
 
     <form id="form" method="POST" enctype="multipart/form-data" action="../controladores/crear_producto.php">
@@ -25,7 +82,7 @@
             <select id="cat" name="cat">
                 <option value="default"> Seleccione una Categoria</option>
                 <?php
-                include '../../config/conexionBD.php';
+                include '../../../config/conexionBD.php';
                 $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -41,16 +98,16 @@
             <span id="mensajeCategoria" class="error"></span>
             <br>
             <label for="precio">Precio(*)</label>
-            <input type="text" id="precio" name="precio" value="" placeholder="Ingrese el precio ..." />
+            <input class="in" type="text" id="precio" name="precio" value="" placeholder="Ingrese el precio ..." />
             <span id="mensajePrecio" class="error"></span>
             <br>
-            <input type="submit" id="crear" name="crear" value="Aceptar" />
-            <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
         </div>
         <div class=" parte2">
             <label for="imagen">Seleccione imagen a cargar</label>
             <input class="in" id="uploadImage1" type="file" name="image" onchange="previewImage(1)" accept="image/*" />
             <img id="uploadPreview1" width="150" height="150" src="images/usu.PNG" />
+            <input class="in" type="submit" id="crear" name="crear" value="Aceptar" />
+            <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
         </div>
     </form>
 
@@ -97,5 +154,4 @@
         </section>
     </footer>
 </body>
-
 </html>
