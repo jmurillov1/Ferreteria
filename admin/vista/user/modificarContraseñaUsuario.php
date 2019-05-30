@@ -4,7 +4,7 @@ $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];  
 $foto = $_SESSION['fer_usu_foto'];
 if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
-    header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
 <!DOCTYPE html>
@@ -97,12 +97,12 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <section id="fot">
             <h2>REDES SOCIALES</h1>
                 <div>
-                    <ul>
-                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../imagenes/fac.png"  width=80px heidth=180px></a></li>
-                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../imagenes/cor.png" width=80px heidth=120px></a></li>
-                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../imagenes/twi.png" width=80px heidth=100px></a></li>
-                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../imagenes/ins.png" width=80px heidth=100px></a></li>
-                    </ul>
+                <ul>
+                            <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png"  width=80px heidth=180px></a></li>
+                            <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                            <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                            <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                        </ul>
                 </div>
         </section>
 

@@ -19,23 +19,22 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
 <body>
     <header>
-
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li><a href="">PEDIDOS</a>
+                    <li id="ul" ><a href="">PEDIDOS</a>
                     </li>
-                    <li><a href="">FACTURAS</a>
+                    <li id="ul"><a href="">FACTURAS</a>
                     </li>
-                    <li><a href="usuarios.php">USUARIOS</a>
+                    <li id="ul"><a href="usuarios.php">USUARIOS</a>
                     </li>
-                    <li><a href="">SUCURSAL</a>
+                    <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
                             <li><a href="">CREAR</a></li>
                             <li><a href="">LISTAR</a></li>
                         </ul>
                     </li>
-                    <li><a href="">PRODUCTOS</a>
+                    <li id="ul"><a href="">PRODUCTOS</a>
                         <ul>
                             <li><a href="crear_producto.php">CREAR</a></li>
                             <li><a href="listar_productos.php">LISTAR</a></li>
@@ -103,48 +102,48 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </table>
 
-<br>
+    <br>
 
-        <footer>
-            <section id="pa">
-                <h2>
-                    INFORMACIÓN DE CONTACTO
-                </h2>
-                <h3>
-                    DIRECCION
-                </h3>
-                <h4>
-                    Av. Gil Ramirez Davalos y Eliat Liut
-                </h4>
-                <h3>
-                    TELEFONO
-                </h3>
-                <h3>
-                    0981241115 - 0989224223
-                </h3>
-                <h3>
-                    EMAIL
-                </h3>
-                <h4>
-                    servicio@tupernoferreteria.com
-                </h4>
+    <footer>
+        <section id="pa">
+            <h2>
+                INFORMACIÓN DE CONTACTO
+            </h2>
+            <h3>
+                DIRECCION
+            </h3>
+            <h4>
+                Av. Gil Ramirez Davalos y Eliat Liut
+            </h4>
+            <h3>
+                TELEFONO
+            </h3>
+            <h3>
+                0981241115 - 0989224223
+            </h3>
+            <h3>
+                EMAIL
+            </h3>
+            <h4>
+                servicio@tupernoferreteria.com
+            </h4>
 
-            </section>
-            <section id="fot">
-                <h2>REDES SOCIALES</h1>
-                    <div>
-                        <ul>
-                            <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
-                            <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
-                            <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
-                            <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
-                        </ul>
-                    </div>
-            </section>
-            <section id="fot1">
-                <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
-            </section>
-        </footer>
+        </section>
+        <section id="fot">
+            <h2>REDES SOCIALES</h1>
+                <div>
+                    <ul>
+                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                    </ul>
+                </div>
+        </section>
+        <section id="fot1">
+            <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
+        </section>
+    </footer>
 </body>
 
 </html>

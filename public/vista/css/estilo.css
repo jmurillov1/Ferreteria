@@ -20,6 +20,10 @@ ul li {
     margin: 0% 5%;
 }
 
+#ul{
+    width: 5px;
+}
+
 ul li:hover {
     display: block;
     color: red;
@@ -36,7 +40,7 @@ ul ul {
     background: #333;
     color: #fff;
     padding: 5px 0px 5px 5px;
-    margin: 285px 0px 0px 0px;
+    margin: 275px 0px 0px 0px;
 }
 
 ul ul li {

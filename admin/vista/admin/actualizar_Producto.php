@@ -1,3 +1,12 @@
+<?php
+session_start();
+$nombre = $_SESSION['fer_usu_nombres'];
+$apellido = $_SESSION['fer_usu_apellidos'];
+$foto = $_SESSION['fer_usu_foto'];
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
+    header("Location: /Ferreteria/public/vista/login.html");
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +18,49 @@
 </head>
 
 <body>
+<header>
+        <section>
+            <nav id="moopio">
+                <ul id="menuPrincipal">
+                    <li id="ul" ><a href="">PEDIDOS</a>
+                    </li>
+                    <li id="ul"><a href="">FACTURAS</a>
+                    </li>
+                    <li id="ul"><a href="usuarios.php">USUARIOS</a>
+                    </li>
+                    <li id="ul"><a href="">SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="ul"><a href="">PRODUCTOS</a>
+                        <ul>
+                            <li><a href="crear_producto.php">CREAR</a></li>
+                            <li><a href="listar_productos.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">PRODUCTOS SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="de"><a href="">
+                            <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                        <ul>
+                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
+                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
+                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
+                            <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </section>
+    </header>
+
     <?php
     include "../../config/conexionBD.php";
     $codigo_pro = $_GET['codigo'];
