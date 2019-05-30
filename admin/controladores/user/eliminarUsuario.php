@@ -16,7 +16,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <?php
     //incluir conexión a la base de datos
     include '../../../config/conexionBD.php';
-    $codigo = $_SESSION['fer_usuario_codigo'];
+    $codigo = $_SESSION['fer_usu_codigo'];
 
     //Si voy a eliminar físicamente el registro de la tabla
     //$sql = "DELETE FROM usuario WHERE codigo = '$codigo'";
@@ -28,7 +28,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     } else {
         echo "<p>Error: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
     }
-    echo "<a href='../../vista/user/index.php'>Regresar</a>";
+    echo "<a href='../../../public/vista/index.html'>Regresar</a>";
     $conn->close();
     ?>
 </body>

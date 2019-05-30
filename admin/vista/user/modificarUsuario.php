@@ -26,7 +26,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 <ul id="menuPrincipal">
                     <li><a href="">PEDIDOS</a>
                     </li>
-                    <li id="de"><a href="" > <img src="data:image/jpg;base64,<?php echo $foto ?>"  width="15" height=15 ><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
+                    <li id="de"><a href="" > <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
                         <ul>
                             <li><a href="modificarUsuario.php">MODIFICAR</a></li>
                             <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 
     <?php
     include '../../../config/conexionBD.php';
-    $codigo = $_SESSION['fer_usuario_codigo'];
+    $codigo = $_SESSION['fer_usu_codigo'];
     $sql = "SELECT * FROM fer_usuario where fer_usu_id=$codigo";
     $result = $conn->query($sql);
 

@@ -239,3 +239,13 @@ h1{
     -webkit-appearance: none;
 }
 
+th {
+    background-color: #111;
+    color: white;
+}
+
+td {
+    background-color: Gray;
+    color: black;
+    text-align: center;
+}

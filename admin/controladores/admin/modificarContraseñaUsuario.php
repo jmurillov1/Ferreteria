@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
@@ -22,7 +22,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     $contrasena2 = isset($_POST["contrasena2"]) ? trim($_POST["contrasena2"]) : null;
     $sqlContrasena1 = "SELECT * FROM fer_usuario where fer_usu_id = $codigo and fer_usu_password= MD5('$contrasena1')";
     $result1 = $conn->query($sqlContrasena1);
-
     if ($result1->num_rows > 0) {
         date_default_timezone_set("America/Guayaquil");
         $fecha = date('Y-m-d H:i:s', time());
@@ -38,7 +37,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     } else {
         echo "<p>La contraseña actual no coincide con nuestros registros!!! </p>";
     }
-    echo "<a href='../../vista/user/Index.php'>Regresar</a>";
+    echo "<a href='../../vista/admin/index.php'>Regresar</a>";
     $conn->close();
 
     ?>
