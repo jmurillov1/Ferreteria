@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
 </head>
 
 <body>
     <?php
-    include "../../config/conexionBD.php";
+    include "../../../config/conexionBD.php";  
+    $codigo = $_POST['codigo'];
     $nombre_producto = isset($_POST["nombre"]) ? mb_strtoupper(trim($_POST["nombre"]), 'UTF-8') : null;
     $desc_producto = isset($_POST["desc"]) ? mb_strtoupper(trim($_POST["desc"]), 'UTF-8') : null;
     $precio_producto = isset($_POST["precio"]) ? trim($_POST["precio"]) : null;
@@ -19,17 +21,17 @@
     $fecha = date('Y-m-d H:i:s', time());
     if ($_FILES["image"]["tmp_name"] != null) {
         $foto = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-        $sql = "UPDATE fer_producto SET fer_pro_nombre ='$nombre_producto',fer_pro_desc='$desc_producto',fer_pro_precio = '$precio_producto', fer_pro_foto = '$foto', fer_pro_cat_id = $cat_producto, fer_pro_mod = '$fecha'";
+        $sql = "UPDATE fer_producto SET fer_pro_nombre ='$nombre_producto',fer_pro_desc='$desc_producto',fer_pro_precio = '$precio_producto', fer_pro_foto = '$foto', fer_pro_cat_id = $cat_producto, fer_pro_mod = '$fecha' WHERE fer_pro_id = $codigo" ;
     } else {
-        $sql = "UPDATE fer_producto SET fer_pro_nombre ='$nombre_producto',fer_pro_desc='$desc_producto',fer_pro_precio = '$precio_producto',fer_pro_cat_id = $cat_producto, fer_pro_mod = '$fecha'";
+        $sql = "UPDATE fer_producto SET fer_pro_nombre ='$nombre_producto',fer_pro_desc='$desc_producto',fer_pro_precio = '$precio_producto',fer_pro_cat_id = $cat_producto, fer_pro_mod = '$fecha' WHERE fer_pro_id = $codigo";
     }
 
     if ($conn->query($sql) === TRUE) {
-        echo "Se ha actualizado los datos personales correctamemte!!!<br>";
+        echo "Se ha actualizado los datos de productos correctamemte!!!<br>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
     }
-    echo "<a href='../vista/listar_productos.php'>Regresar</a>";
+    echo "<a href='../../vista/admin/listar_productos.php'>Regresar</a>";
     $conn->close();
 
     ?>

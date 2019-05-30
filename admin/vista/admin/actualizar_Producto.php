@@ -15,14 +15,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <title>Actualizar Producto</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
 </head>
 
 <body>
-<header>
+    <header>
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li id="ul" ><a href="">PEDIDOS</a>
+                    <li id="ul"><a href="">PEDIDOS</a>
                     </li>
                     <li id="ul"><a href="">FACTURAS</a>
                     </li>
@@ -60,7 +61,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </nav>
         </section>
     </header>
-<h1>Actualizar Producto</h1>
+    <h1>Actualizar Producto</h1>
     <?php
     include "../../../config/conexionBD.php";
     $codigo_pro = $_GET['codigo'];
@@ -70,8 +71,9 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         while ($row = $result->fetch_assoc()) {
             $precio = $row["fer_pro_precio"];
             ?>
-            <form id="form" method="POST" enctype="multipart/form-data" action="../controladores/admin/actualizar_producto.php">
+            <form id="form" method="POST" enctype="multipart/form-data" action="../../controladores/admin/actualizar_producto.php">
                 <div class=" parte1">
+                    <input class="in" type="hidden" id="codigo" name="codigo" value="<?php echo $row["fer_pro_id"]; ?>" />
                     <label for="nombre">Nombre(*)</label>
                     <input class="in" type="text" id="nombre" name="nombre" value="<?php echo $row["fer_pro_nombre"]; ?>" />
                     <span id="mensajeNombre" class="error"> </span>
@@ -103,17 +105,17 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     <span id="mensajeCategoria" class="error"></span>
                     <br>
                     <label for="precio">Precio(*)</label>
-                    <input type="text" id="precio" name="precio" value="<?php echo $precio ?>" />
+                    <input class="in" type="text" id="precio" name="precio" value="<?php echo $precio ?>" />
                     <span id="mensajePrecio" class="error"></span>
                     <br>
-                    <input type="submit" id="crear" name="crear" value="Aceptar" />
-                    <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+
                 </div>
                 <div class=" parte2">
                     <input class="in" id="uploadImage1" type="file" name="image" onchange="previewImage(1)" accept="image/*" />
                     <img id="uploadPreview1" width="150" height="150" src="data:image/jpg;base64,<?php echo base64_encode($row['fer_pro_foto']) ?>" width="100" height="100" />
-                </div> 
-                <input type="submit" value="Actualizar" />
+                </div>
+                <input class="in" type="submit" value="Actualizar" />
+                <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
             </form>
         <?php
     }
@@ -124,8 +126,9 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 $conn->close();
 ?>
 
+    <br>
 
-<footer>
+    <footer>
         <section id="pa">
             <h2>
                 INFORMACIÓN DE CONTACTO
