@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
-    header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
         }
-        echo "<a href='../../vista/user/index.php'>Regresar</a>";
+        echo "<a href='../../vista/admin/index.php'>Regresar</a>";
         $conn->close();
     } else {
         date_default_timezone_set("America/Guayaquil");
@@ -64,7 +64,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
         }
-        echo "<a href='../../vista/user/index.php'>Regresar</a>";
+        echo "<a href='../../vista/admin/index.php'>Regresar</a>";
         $conn->close();
     }
 

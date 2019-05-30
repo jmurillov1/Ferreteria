@@ -1,5 +1,8 @@
 <?php
 session_start();
+$nombre = $_SESSION['fer_usu_nombres'];
+$apellido = $_SESSION['fer_usu_apellidos'];
+$foto = $_SESSION['fer_usu_foto'];
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /SistemaDeGestion/public/vista/login.html");
 }
@@ -11,9 +14,51 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <meta charset="UTF-8"> 
     <script type="text/javascript" src="../../../js/funciones.js"></script>
     <title>Modificar datos de persona</title>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
+<header>
+
+        <section>
+            <nav id="moopio">
+                <ul id="menuPrincipal">
+                    <li><a href="">PEDIDOS</a>
+                    </li>
+                    <li><a href="">FACTURAS</a>
+                    </li>
+                    <li><a href="usuarios.php">USUARIOS</a>
+                    </li>
+                    <li><a href="">SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">PRODUCTOS SUCURSAL</a>
+                        <ul>
+                            <li><a href="">CREAR</a></li>
+                            <li><a href="">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="de"><a href="" > <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre.' '.substr($apellido, 0,1).'.'?></a>
+                        <ul>
+                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
+                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
+                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
+                            <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+
+
+    <h1>Actualizar Usuario</h1>
     <?php
     $codigo = $_GET["codigo"];
     include '../../../config/conexionBD.php';
@@ -23,35 +68,35 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             ?>
-            <form id="formulario01" method="POST" action="../../controladores/admin/modificarUsuario.php"  enctype="multipart/form-data">
-                <input type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" /> 
+            <form id="form" method="POST" action="../../controladores/admin/modificarUsuario.php"  enctype="multipart/form-data">
+                <input class="in" type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" /> 
                 <img id="uploadPreview1" name ="uploadPreview1"  class="imag" src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="200" height="200"> 
                 <br>
-                <input type="file" id="uploadImage1" name="uploadImage1" onchange="previewImage(1)" accept="image/*" />
+                <input class="in" type="file" id="uploadImage1" name="uploadImage1" onchange="previewImage(1)" accept="image/*" />
                 <br>
                 <label for="cedula">Cedula</label>
-                <input type="text" id="cedula" name="cedula" value="<?php echo $row["fer_usu_cedula"]; ?>" required placeholder="Ingrese la cedula ..." />
+                <input class="in" type="text" id="cedula" name="cedula" value="<?php echo $row["fer_usu_cedula"]; ?>" required placeholder="Ingrese la cedula ..." />
                 <br>
                 <label for="nombres">Nombres</label>
-                <input type="text" id="nombres" name="nombres" value="<?php echo $row["fer_usu_nombres"]; ?>" required placeholder="Ingrese los dos nombres ..." />
+                <input class="in" type="text" id="nombres" name="nombres" value="<?php echo $row["fer_usu_nombres"]; ?>" required placeholder="Ingrese los dos nombres ..." />
                 <br>
                 <label for="apellidos">Apellidos</label>
-                <input type="text" id="apellidos" name="apellidos" value="<?php echo $row["fer_usu_apellidos"]; ?>" required placeholder="Ingrese los dos apellidos ..." />
+                <input class="in" type="text" id="apellidos" name="apellidos" value="<?php echo $row["fer_usu_apellidos"]; ?>" required placeholder="Ingrese los dos apellidos ..." />
                 <br>
                 <label for="direccion">Dirección</label>
-                <input type="text" id="direccion" name="direccion" value="<?php echo $row["fer_usu_direccion"]; ?>" required placeholder="Ingrese la dirección ..." />
+                <input class="in" type="text" id="direccion" name="direccion" value="<?php echo $row["fer_usu_direccion"]; ?>" required placeholder="Ingrese la dirección ..." />
                 <br>
                 <label for="telefono">Teléfono</label>
-                <input type="text" id="telefono" name="telefono" value="<?php echo $row["fer_usu_telefono"]; ?>" required placeholder="Ingrese el teléfono ..." />
+                <input class="in" type="text" id="telefono" name="telefono" value="<?php echo $row["fer_usu_telefono"]; ?>" required placeholder="Ingrese el teléfono ..." />
                 <br>
                 <label for="fecha">Fecha Nacimiento</label>
-                <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<?php echo $row["fer_usu_fecha_nac"]; ?>" required placeholder="Ingrese la fecha de nacimiento ..." />
+                <input class="in" type="date" id="fechaNacimiento" name="fechaNacimiento" value="<?php echo $row["fer_usu_fecha_nac"]; ?>" required placeholder="Ingrese la fecha de nacimiento ..." />
                 <br>
                 <label for="correo">Correo electrónico</label>
-                <input type="email" id="correo" name="correo" value="<?php echo $row["fer_usu_correo"]; ?>" required placeholder="Ingrese el correo electrónico ..." />
+                <input class="in" type="email" id="correo" name="correo" value="<?php echo $row["fer_usu_correo"]; ?>" required placeholder="Ingrese el correo electrónico ..." />
                 <br>
-                <input type="submit" id="modificar" name="modificar" value="Modificar" />
-                <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+                <input class="in" type="submit" id="modificar" name="modificar" value="Modificar" />
+                <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
             </form>
         <?php
     }
@@ -61,6 +106,51 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 }
 $conn->close();
 ?>
+
+<br>
+
+<footer>
+            <section id="pa">
+                <h2>
+                    INFORMACIÓN DE CONTACTO
+                </h2>
+                <h3>
+                    DIRECCION
+                </h3>
+                <h4>
+                    Av. Gil Ramirez Davalos y Eliat Liut
+                </h4>
+                <h3>
+                    TELEFONO
+                </h3>
+                <h3>
+                    0981241115 - 0989224223
+                </h3>
+                <h3>
+                    EMAIL
+                </h3>
+                <h4>
+                    servicio@tupernoferreteria.com
+                </h4>
+    
+            </section>
+    
+            <section id="fot">
+                <h2>REDES SOCIALES</h1>
+                    <div>
+                        <ul>
+                            <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../imagenes/fac.png"  width=80px heidth=180px></a></li>
+                            <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../imagenes/cor.png" width=80px heidth=120px></a></li>
+                            <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../imagenes/twi.png" width=80px heidth=100px></a></li>
+                            <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../imagenes/ins.png" width=80px heidth=100px></a></li>
+                        </ul>
+                    </div>
+            </section>
+    
+            <section id="fot1">
+                <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
+            </section>
+        </footer>
 </body>
 
 </html>

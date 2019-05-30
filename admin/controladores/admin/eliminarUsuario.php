@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
-    header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
 <!DOCTYPE html>
