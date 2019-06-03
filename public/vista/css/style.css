@@ -57,6 +57,7 @@ img {
 
 .carr {
     text-decoration: none;
+    width:25%;
 }
 
 .ctd {
@@ -80,10 +81,6 @@ img {
 #menosf{
     width: 15px;
     height: 15px;
-}
-
-#masf{
-
 }
 
 .parte2 #uploadPreview1 {
