@@ -34,18 +34,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             $ident = $row["MIN(fer_suc_id)"];
         }
     }
-    $sql2 = "SELECT MAX(fer_ped_cab_id) FROM fer_pedido_cabecera WHERE fer_ped_cab_el='N';";
-    $result2 = $conn->query($sql2);
-    if ($result2 == null) {
-        while ($row = $result2->fetch_assoc()) {
-            $cab = $row["MAX(fer_ped_cab_id)"];
-            $_SESSION['cab'] = $cab;
-            echo "<input id='cab' value='$cab'>";
-        }
-    } else {
-        echo "<input id='cab' value='1'>";
-        $_SESSION['cab'] = 1;
-    }
     ?>
     <select id="sucursal" name="sucursal">
         <?php
@@ -55,13 +43,13 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             while ($row = $result->fetch_assoc()) {
                 $codigo = $row["fer_suc_id"];
                 $desc = $row["fer_suc_direccion"];
-                echo "<option onclick='cargar($codigo)' id='item$codigo' value='" . $codigo . "'>" . $desc . "</option>";
+                echo "<option onclick='listarps($codigo)' id='item$codigo' value='" . $codigo . "'>" . $desc . "</option>";
             }
         }
         ?>
     </select>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
-    <article id="info">
+    <table id="info">
         <?php
         $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
         $result = $conn->query($sql);
@@ -100,7 +88,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         }
         $conn->close();
         ?>
-    </article>
+    </table>
     <footer>
         <h5> Copyright </h5>
         <h5> Tu Perno </h5>
