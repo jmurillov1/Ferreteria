@@ -32,10 +32,16 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li id="ul"><a href="usuarios.php">USUARIOS</a>
                     </li>
+                    <li id="ul"><a href="">CATEGORIA</a>
+                        <ul>
+                            <li><a href="crear_categoria.html">CREAR</a></li>
+                            <li><a href="listar_categoria.php">LISTAR</a></li>
+                        </ul>
+                    </li>
                     <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
-                            <li><a href="">LISTAR</a></li>
+                            <li><a href="crear_sucursal.html">CREAR</a></li>
+                            <li><a href="listar_sucursal.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="ul"><a href="">PRODUCTOS</a>
@@ -46,16 +52,13 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li><a href="">PRODUCTOS SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
-                            <li><a href="">LISTAR</a></li>
+                            <li><a href="crear_suc_producto.php">CREAR</a></li>
+                            <li><a href="listar_suc_producto.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="de"><a href="">
                             <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
-                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
-                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
-                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
                             <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
                     </li>

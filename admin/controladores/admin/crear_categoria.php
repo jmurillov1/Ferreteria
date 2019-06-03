@@ -15,7 +15,7 @@
 <body>
     <?php  
     //incluir conexión a la base de datos
-    include '../../config/conexionBD.php';
+    include '../../../config/conexionBD.php';
     $desc = isset($_POST["desc"]) ? mb_strtoupper(trim($_POST["desc"]), 'UTF-8') : null;
 
     $sql = "INSERT INTO fer_categoria VALUES(0, '$desc', 'N', null,null);";
@@ -26,7 +26,7 @@
     }
     //cerrar la base de datos
     $conn->close();
-    echo "<a href='../vista/crear_categoria.html'>Regresar</a>";
+    echo "<a href='../../vista/admin/crear_categoria.html'>Regresar</a>";
     ?>
 </body>
 

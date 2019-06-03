@@ -7,17 +7,17 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Principal Usuario</title>
+    <title>Listar Sucursales</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
-
 <body>
+
 <header>
         <section>
             <nav id="moopio">
@@ -65,11 +65,31 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     </header>
 
 
-    <h1>Bienvenido Admin</h1>
-
-
-
-
+<table style="width:100%" border="1">
+        <tr>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+        </tr>
+        <?php
+        include "../../../config/conexionBD.php";
+        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el = 'N'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "   <td>" . $row['fer_suc_direccion'] . "</td>";
+                echo "   <td>" . $row['fer_suc_telefono'] . "</td>";
+                echo "   <td>" . "<a href = 'actualizar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Actualizar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "</tr>";
+            }
+            $conn->close();
+        }
+        ?>
+        </section>
+    </table>
 
 
     <footer>
@@ -115,5 +135,4 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </footer>
 </body>
-
 </html>

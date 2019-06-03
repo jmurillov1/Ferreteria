@@ -16,7 +16,7 @@
         $foto = null;
         $nombre = null;
         $precio = 0.00;
-        $val = false;
+        $val = false; 
         $val1 = false;
 
         $sql = "INSERT INTO fer_pedido_detalle VALUES(0, '$cant', '$desc', $precio, '$foto',$cat, 'N', null,null);";
