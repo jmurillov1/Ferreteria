@@ -1,3 +1,13 @@
+<?php
+session_start();
+$cod = $_SESSION['fer_usu_codigo'];
+$nombre = $_SESSION['fer_usu_nombres'];
+$apellido = $_SESSION['fer_usu_apellidos'];
+$foto = $_SESSION['fer_usu_foto'];
+if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
+    header("Location: /Ferreteria/public/vista/login.html");
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +26,6 @@
         <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
     </a>
     <?php
-    session_start();
     include '../../config/conexionBD.php';
     $sql1 = "SELECT MIN(fer_suc_id) FROM fer_sucursal WHERE fer_suc_el='N';";
     $result1 = $conn->query($sql1);
@@ -25,15 +34,17 @@
             $ident = $row["MIN(fer_suc_id)"];
         }
     }
-    $sql1 = "SELECT MAX(fer_ped_cab_id) FROM fer_pedido_cabecera WHERE fer_suc_el='N';";
-    $result1 = $conn->query($sql1);
-    if ($result1->num_rows > 0) {
-        while ($row = $result1->fetch_assoc()) {
-            $cab = $row["MAX(fer_suc_id)"];
+    $sql2 = "SELECT MAX(fer_ped_cab_id) FROM fer_pedido_cabecera WHERE fer_ped_cab_el='N';";
+    $result2 = $conn->query($sql2);
+    if ($result2 == null) {
+        while ($row = $result2->fetch_assoc()) {
+            $cab = $row["MAX(fer_ped_cab_id)"];
+            $_SESSION['cab'] = $cab;
+            echo "<input id='cab' value='$cab'>";
         }
-    }else{
-        $cab=0;
-        
+    } else {
+        echo "<input id='cab' value='1'>";
+        $_SESSION['cab'] = 1;
     }
     ?>
     <select id="sucursal" name="sucursal">
@@ -50,7 +61,6 @@
         ?>
     </select>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
-    <img id="imagen2" src="../../../public/vista/images/lupa.png">
     <article id="info">
         <?php
         $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
@@ -80,7 +90,7 @@
                 echo "<div class='parte3'>";
                 echo "<button id='menos' onclick='menos($codigo)'>-</button>";
                 echo "<input class='ctd' name='ctd' id='ctd$codigo' value='1' />";
-                echo "<button id='mas' onclick='mas($codigo)'>+</button> <br>";
+                echo "<button id='mas' onclick='mas($codigo,$stock)'>+</button> <br>";
                 echo "<button class='agg' id='agg$codigo' onclick='agregar($codigo)'>Agregar Carrito</button>";
                 echo "</div>";
                 echo "</section>";
@@ -93,7 +103,7 @@
     </article>
     <footer>
         <h5> Copyright </h5>
-        <h5> FerTech </h5>
+        <h5> Tu Perno </h5>
         <h5> 2019 </h5>
     </footer>
 </body>

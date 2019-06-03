@@ -19,3 +19,8 @@ th, td {
     text-align: center;
     width: 74%;
 }
+
+td #foto{
+    width: 75px;
+    height: 75px;
+}
