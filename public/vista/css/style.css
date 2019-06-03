@@ -78,9 +78,9 @@ img {
     padding-bottom: 10px;
 }
 
-#menosf{
-    width: 15px;
-    height: 15px;
+#menosf,#masf{
+    width: 30px;
+    height: 30px;
 }
 
 .parte2 #uploadPreview1 {
@@ -96,8 +96,8 @@ img {
 }
 
 input {
-    width: 380px;
-    height: 27px;
+    width: 70%;
+    height: 25px;
 }
 
 #preview {

@@ -6,7 +6,6 @@ function cargarProducto(val) {
             var td = document.getElementById("tbl").rows[fila].cells[2]
             var cantidad = Number(td.getElementsByTagName('input')[0].value)
             var precio = document.getElementById("tdp"+val).innerText
-            console.log(precio)
             document.getElementById("tbl").rows[fila].cells[4].innerHTML = cantidad*precio
         }
     }
