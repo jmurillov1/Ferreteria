@@ -14,7 +14,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <meta charset="UTF-8">
     <title>Cambiar Contraseña</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
-    <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>

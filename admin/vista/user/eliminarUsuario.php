@@ -15,7 +15,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <script type="text/javascript" src="../../../js/funciones.js"></script>
     <title>Eliminar  Usuario</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
-    <a href="../../../public/vista/index.html"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
