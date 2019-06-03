@@ -61,6 +61,30 @@ function agregar(cod) {
   }
 }
 
+function actualizar(val) {
+  var ncant = Number(document.getElementById("cant" + val).value)
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      //alert(this.responseText)
+      var total = 0;
+      for (var i = 1; document.getElementById('tbl').rows[i]; i++) {
+        total += Number(document.getElementById('tbl').rows[i].cells[5].innerHTML);
+      }
+      document.getElementById('total').value = total.toFixed(2)
+    }
+  };
+  xmlhttp.open("GET", "../controladores/actualizar_carrito.php?codigo=" + val + "&cantidad=" + ncant, true)
+  xmlhttp.send()
+  return false
+}
+
 function cargar(cod) {
   var se = document.getElementById("item" + cod).value
   console.log(se)
@@ -73,7 +97,7 @@ function cargar(cod) {
   }
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 & this.status == 200) {
-      alert("llegue")
+      //alert("llegue")
     }
   };
   xmlhttp.open("GET", "../controladores/listar_productos_sucursal.php?codigo=" + cod, true)
@@ -82,36 +106,42 @@ function cargar(cod) {
 }
 
 function val() {
-  var cant = Number(document.getElementById("sel").value)
+  var cant = Number(document.getElementById("sel").value).toFixed(2)
   console.log(cant)
 }
 
-function cargarProducto(pre) {
+function cargarProducto(val) {
   var rows = document.getElementById('tbl').getElementsByTagName('tbody')[0].getElementsByTagName('tr')
+  var precio = 1.00
+  var cantidad = 0
+  var sum = 0
   for (i = 0; i < rows.length; i++) {
     rows[i].onclick = function () {
       var fila = this.rowIndex
       var td = document.getElementById("tbl").rows[fila].cells[3]
-      var cantidad = Number(td.getElementsByTagName('input')[0].value)
-      document.getElementById("tbl").rows[fila].cells[5].innerHTML = cantidad
+      cantidad = Number(td.getElementsByTagName('input')[0].value).toFixed(2)
+      precio = document.getElementById("tdp" + val).innerText
+      document.getElementById("tbl").rows[fila].cells[5].innerHTML = Number(cantidad * precio).toFixed(2)
     }
   }
 }
 
-function mas1() {
-  var cant = Number(document.getElementById("cant1").value)
+function mas1(val, stock) {
+  var cant = Number(document.getElementById("cant" + val).value)
   var ncant = cant + 1
-  document.getElementById("cant1").value = ncant
-  document.getElementById("cant1").focus == true
+  if (ncant <= stock) {
+    document.getElementById("cant" + val).value = ncant
+  } else {
+    document.getElementById("cant" + val).value = stock
+  }
 }
 
-function menos2() {
-  var cant = Number(document.getElementById("cant1").value)
+function menos1(val) {
+  var cant = Number(document.getElementById("cant" + val).value)
   var ncant = cant - 1
-  if (cant > 1) {
-    document.getElementById("cant1").value = ncant
+  if (ncant > 1) {
+    document.getElementById("cant" + val).value = ncant
   } else {
-    document.getElementById("cant1").value = 1
+    document.getElementById("cant" + val).value = 1
   }
-  document.getElementById("cant1").focus == true
 }

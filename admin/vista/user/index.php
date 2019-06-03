@@ -20,7 +20,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 
 <body>
     <header>
-
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">

@@ -54,30 +54,36 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 $sql1 = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_id=$pro;";
                 $result1 = $conn->query($sql1);
                 $row1 = $result1->fetch_assoc();
+                $stock = $row1["fer_suc_pro_stock"];
                 $sql2 = "SELECT * FROM fer_producto WHERE fer_pro_el='N' AND fer_pro_id=$row1[fer_suc_pro_prod_id];";
                 $result2 = $conn->query($sql2);
                 $row2 = $result2->fetch_assoc();
                 $npro = $row2["fer_pro_nombre"];
-                $precio=$row2["fer_pro_precio"];
+                $precio = $row2["fer_pro_precio"];
                 $foto = $row2["fer_pro_foto"];
                 ?>
                 <tr>
-                    <td></td>
-                    <td><img id='foto' src='data:image/*;base64,<?php echo base64_encode($foto) ?>' alt='titulo foto' /></td>
+                    <td><center><a href=""><img id='foto' src='images/bote.jpg' alt='titulo foto' /></a></center></td>
+                    <td><center><img id='foto' src='data:image/*;base64,<?php echo base64_encode($foto) ?>' alt='titulo foto' /></center></td>
                     <td><?php echo $npro; ?></td>
                     <td>
-                        <button id="menosf" onclick="menos1();cargarProducto()">-</button>
-                        <input id="cant1" value="<?php echo $cantidad; ?>" />
-                        <button id="masf" onclick="mas1();cargarProducto()">+</button>
+                        <button id="menosf" onclick="menos1(<?php echo $codigo ?>);cargarProducto(<?php echo $codigo ?>);actualizar(<?php echo $codigo ?>)">ꓦ</button>
+                        <input id="cant<?php echo $codigo ?>" value="<?php echo $cantidad; ?>" disabled />
+                        <button id="masf" onclick="mas1(<?php echo $codigo ?>,<?php echo $stock ?>);cargarProducto(<?php echo $codigo ?>);actualizar(<?php echo $codigo ?>)">ꓥ</button>
                     </td>
-                    <td><?php echo $precio; ?></td>
+                    <td id="tdp<?php echo $codigo ?>"><?php echo $precio; ?></td>
                     <td><?php echo $subtotal; ?></td>
                 </tr>
             <?php
         }
     }
+    $sqlc = "SELECT SUM(fer_ped_det_subtotal) FROM fer_pedido_detalle WHERE fer_ped_det_el='N' AND fer_ped_det_ped_cab_id=$cab ;";
+    $resultc = $conn->query($sqlc);
+    $row = $resultc->fetch_assoc();
+    $tot =  $row["SUM(fer_ped_det_subtotal)"];
     ?>
     </table>
+    <div><label for="total">Total a Pagar</label><input id="total" value="<?php echo $tot ?>"></div>
     <footer>
         <h5> Copyright </h5>
         <h5> Jordan Murillo </h5>
