@@ -158,7 +158,6 @@ function eliminar(cod) {
 }
 
 function listarps(cod) {
-  var se = document.getElementById("item" + cod).value
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
@@ -169,9 +168,10 @@ function listarps(cod) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 & this.status == 200) {
       //alert("llegue")
+      document.getElementById('info').innerHTML = this.responseText
     }
   }
-  xmlhttp.open("GET", "../controladores/listar_productos_sucursal.php?codigo=" + cod, true)
+  xmlhttp.open("GET", "../controladores/listar_producto_sucursal.php?codigo=" + cod, true)
   xmlhttp.send()
   return false
 }

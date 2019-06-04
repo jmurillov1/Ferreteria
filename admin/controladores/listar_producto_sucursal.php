@@ -19,18 +19,13 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 </head>
 
 <body>
-    <header class="cabis">
-        <h4>Productos</h4>
-    </header>
-    <a href="pedido_detalle.php" class="carr">
-        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
-    </a>
     <?php
     include '../../config/conexionBD.php';
+    $codigo = $_GET["codigo"];
     ?>
-    <table id="info">
+    <div id="info">
         <?php
-        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
+        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$codigo;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -67,12 +62,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         }
         $conn->close();
         ?>
-    </table>
-    <footer>
-        <h5> Copyright </h5>
-        <h5> Tu Perno </h5>
-        <h5> 2019 </h5>
-    </footer>
+    </div>
 </body>
 
 </html>

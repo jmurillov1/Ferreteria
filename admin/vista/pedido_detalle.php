@@ -23,16 +23,23 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <body id='res'>
     <?php
     include '../../config/conexionBD.php';
-    /*$sqlu = "SELECT * FROM usuario WHERE usu_codigo='$codigoui';";
-    $resultu = $conn->query($sqlu);
-    $row = $resultu->fetch_assoc();
-    $foto = $row["usu_foto"];*/
+    $tot = 0.00;
+    $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tot = $tot + $row["SUM(fer_pdt_cant)"];
+        }
+    }
     ?>
     <header class="cabis">
         <h2>
             Orden
         </h2>
     </header>
+    <a href="pedido_detalle.php" class="carr">
+        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
+    </a>
     <table id="tbl">
         <tr>
             <th></th>
@@ -84,7 +91,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         echo "<td>";
         echo "No hay productos seleccionados";
         echo "</td>";
-        echo "<a href='../vista/carrito.php'>Comprar</a>";
     }
 
     $tot = 0.00;
@@ -95,7 +101,6 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             $tot = $tot + $row["fer_pdt_subtotal"];
         }
     }
-    echo "<a href='../vista/carrito.php'>Comprar</a>";
     ?>
     </table>
     <div>
@@ -103,6 +108,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <input id="tot" value="<?php echo number_format($tot, 2) ?>">
     </div>
     <button onclick="confirmar()"> Confirmar </button>
+    <a href='../vista/carrito.php'>Comprar</a>
     <footer>
         <h5> Copyright </h5>
         <h5> Jordan Murillo </h5>

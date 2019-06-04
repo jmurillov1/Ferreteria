@@ -34,6 +34,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         $result1 = $conn->query($sql1);
         $row1 = $result1->fetch_assoc();
         $precio = $row1["fer_pro_precio"];
+        echo "<br>";
         echo $precio;
 
         $sql2 = "SELECT * FROM fer_ped_det_temp WHERE fer_pdt_suc_pro_id=$codigo;";
@@ -42,7 +43,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             while ($row = $result2->fetch_assoc()) {
                 if ($row["fer_pdt_suc_pro_id"] == $codigo) {
                     $canti = $row["fer_pdt_cant"] + $cantidad;
-                    $sql = "UPDATE fer_ped_det_temp SET fer_pdt_cant=$canti, fer_pdt_subtotal=$canti*$precio WHERE fer_pdt_suc_pro_id";
+                    $sql = "UPDATE fer_ped_det_temp SET fer_pdt_cant=$canti, fer_pdt_subtotal=$canti*$precio WHERE fer_pdt_suc_pro_id=$codigo";
                     if ($conn->query($sql) === TRUE) {
                         echo "<p>Se ha actualizado los detalles correctamente !!!</p>";
                     } else {

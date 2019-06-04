@@ -19,39 +19,27 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 </head>
 
 <body>
+    <?php
+    include '../../config/conexionBD.php';
+    $tot = 0.00;
+    $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tot = $tot + $row["SUM(fer_pdt_cant)"];
+        }
+    }
+    ?>
     <header class="cabis">
         <h4>Productos</h4>
     </header>
     <a href="pedido_detalle.php" class="carr">
-        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
+        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
     </a>
-    <?php
-    include '../../config/conexionBD.php';
-    $sql1 = "SELECT MIN(fer_suc_id) FROM fer_sucursal WHERE fer_suc_el='N';";
-    $result1 = $conn->query($sql1);
-    if ($result1->num_rows > 0) {
-        while ($row = $result1->fetch_assoc()) {
-            $ident = $row["MIN(fer_suc_id)"];
-        }
-    }
-    ?>
-    <select id="sucursal" name="sucursal">
-        <?php
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $codigo = $row["fer_suc_id"];
-                $desc = $row["fer_suc_direccion"];
-                echo "<option onclick='listarps($codigo)' id='item$codigo' value='" . $codigo . "'>" . $desc . "</option>";
-            }
-        }
-        ?>
-    </select>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
-    <table id="info">
+    <div id="info">
         <?php
-        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
+        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$suc;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -88,7 +76,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         }
         $conn->close();
         ?>
-    </table>
+    </div>
     <footer>
         <h5> Copyright </h5>
         <h5> Tu Perno </h5>
