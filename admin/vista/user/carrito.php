@@ -23,6 +23,14 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 
 <body>
 
+<?php
+include '../../../config/conexionBD.php';
+$codigo = $_SESSION['fer_usu_codigo'];
+$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+?>
+
 <header>
         <section>
             <nav id="moopio">

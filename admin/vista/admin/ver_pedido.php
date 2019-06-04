@@ -15,6 +15,10 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Listar Pedidos</title>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" /> 
+    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
+
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
