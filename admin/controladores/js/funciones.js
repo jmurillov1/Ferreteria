@@ -97,9 +97,41 @@ function cargar(cod) {
   return false
 }
 
-function val() {
-  var cant = Number(document.getElementById("sel").value).toFixed(2)
-  console.log(cant)
+function val(cod) {
+  var suc = document.getElementById("item" + cod).value
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      alert("llegue")
+    }
+  };
+  xmlhttp.open("GET", "../../controladores/obtener_sucursal.php?codigo=" + suc, true)
+  xmlhttp.send()
+  return false
+}
+
+function cancelar() {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      alert("llegue")
+    }
+  };
+  xmlhttp.open("GET", "../controladores/eliminar_orden.php", true)
+  xmlhttp.send()
+  return false
 }
 
 function cargarProducto(val) {
@@ -136,7 +168,6 @@ function menos1(val) {
   } else {
     document.getElementById("cant" + val).value = 1
   }
-<<<<<<< HEAD
 }
 
 function eliminar(cod) {
@@ -158,46 +189,45 @@ function eliminar(cod) {
   return false
 }
 
-function listarps(cod) {
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    // code for IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
-  }
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 & this.status == 200) {
-      //alert("llegue")
-      document.getElementById('info').innerHTML = this.responseText
-    }
-  }
-  xmlhttp.open("GET", "../controladores/listar_producto_sucursal.php?codigo=" + cod, true)
-  xmlhttp.send()
-  return false
-=======
-}  
-
-function buscarUsuario(){ 
+function buscarUsuario() {
   var nombre = document.getElementById("nombre").value;
   //location.href=  "../../controladores/user/buscar.php?correo="+correo
-  if(nombre==""){ 
+  if (nombre == "") {
     /*document.getElementById("informacion").innerHTML=""; */
     location.href = "usuarios.php"
-  }else{ 
-      if(window.XMLHttpRequest) { 
-          xmlhttp= new XMLHttpRequest(); 
-      }else{ 
-          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
-      } 
-     xmlhttp.onreadystatechange= function(){ 
-          if(this.readyState == 4 && this.status == 200){ 
-              document.getElementById("informacion").innerHTML=this.responseText;
-          }
-      }; 
-      xmlhttp.open("GET","../../controladores/admin/buscarUsuarios.php?nombre="+nombre,true); 
-      xmlhttp.send();
-  } 
+  } else {
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("informacion").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "../../controladores/admin/buscarUsuarios.php?nombre=" + nombre, true);
+    xmlhttp.send();
+  }
   return false;
->>>>>>> 980e3771039b6515b4f308247d89cf1789bd4bb4
+}
+
+function confirmar() {
+  var total = Number(document.getElementById("total").value)
+  if (nombre == "") {
+  } else {
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        alert("Pedido Creado")
+      }
+    };
+    xmlhttp.open("GET", "../controladores/crear_pedido.php?total=" + total, true);
+    xmlhttp.send();
+  }
+  return false;
 }

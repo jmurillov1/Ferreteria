@@ -22,6 +22,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <?php
     include '../../config/conexionBD.php';
     $tot = 0.00;
+    $suc = $_SESSION["suc"];
     $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

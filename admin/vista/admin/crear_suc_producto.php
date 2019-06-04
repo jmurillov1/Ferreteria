@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -20,19 +19,19 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 </head>
 
 <body>
-<?php
-include '../../../config/conexionBD.php';
-$codigo = $_SESSION['fer_usu_codigo'];
-$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-?>
+    <?php
+    include '../../../config/conexionBD.php';
+    $codigo = $_SESSION['fer_usu_codigo'];
+    $sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    ?>
 
-<header>
+    <header>
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li id="ul" ><a href="">PEDIDOS</a>
+                    <li id="ul"><a href="">PEDIDOS</a>
                     </li>
                     <li id="ul"><a href="">FACTURAS</a>
                     </li>
@@ -63,7 +62,7 @@ $row = $result->fetch_assoc();
                         </ul>
                     </li>
                     <li id="de"><a href="">
-                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
@@ -90,14 +89,14 @@ $row = $result->fetch_assoc();
                     while ($row = $result->fetch_assoc()) {
                         $codigo = $row["fer_pro_id"];
                         $desc = $row["fer_pro_nombre"];
-                        echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
+                        echo "<option value='" . $codigo . "'>" . $desc . "</option>";
                     }
                 }
                 ?>
             </select>
             <span id="mensajeProducto" class="error"> </span>
             <br>
-            <label for="stock">Stock(*)</label> 
+            <label for="stock">Stock(*)</label>
             <input class="in" type="text" id="stock" name="stock" value="" placeholder="Ingrese su descripción ..." />
             <span id="mensajeStock" class="error"></span>
             <br>
@@ -155,7 +154,7 @@ $row = $result->fetch_assoc();
         <section id="fot">
             <h2>REDES SOCIALES</h1>
                 <div>
-                <ul>
+                    <ul>
                         <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
                         <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
                         <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
@@ -167,7 +166,7 @@ $row = $result->fetch_assoc();
         <section id="fot1">
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
-    </footer>    
+    </footer>
 
 </body>
 

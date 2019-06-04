@@ -4,7 +4,6 @@ $cod = $_SESSION['fer_usu_codigo'];
 $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
-$cab = $_SESSION['cab'];
 if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
@@ -101,6 +100,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             $tot = $tot + $row["fer_pdt_subtotal"];
         }
     }
+    $conn->close();
     ?>
     </table>
     <div>
@@ -108,6 +108,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <input id="tot" value="<?php echo number_format($tot, 2) ?>">
     </div>
     <button onclick="confirmar()"> Confirmar </button>
+    <a href="user/index.php" onclick="cancelar()"> Cancelar </a>
     <a href='../vista/carrito.php'>Comprar</a>
     <footer>
         <h5> Copyright </h5>
