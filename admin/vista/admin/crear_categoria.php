@@ -117,10 +117,10 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             <h2>REDES SOCIALES</h1>
                 <div>
                     <ul>
-                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
-                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
-                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
-                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
                     </ul>
                 </div>
         </section>

@@ -72,6 +72,8 @@ $row = $result->fetch_assoc();
         </section>
     </header>
     
+    <h1>Listar Categorias<h1>
+        
 <table style="width:100%" border="1">
         <tr>
             <th>Codigo</th>
