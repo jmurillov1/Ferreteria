@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -10,23 +9,16 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 }
 ?>
 
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Listar Sucursales</title>
-<<<<<<< HEAD
-</head>
-<body>
-<table style="width:100%" border="1">
-        <tr>
-            <th>Telefono</th>
-            <th>Direccion</th>
-=======
+    <title>Sistema de Gestion de Ferretería</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
+
 <body>
 
 <header>
@@ -75,41 +67,57 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </header>
 
+    <header class="cab">
+        <h1>Insertar Nueva Sucursal Producto</h1>
+    </header>
+    <form id="form" method="POST" action="../../controladores/admin/crear_suc_producto.php">
+        <div class=" parte1">
+            <label for="producto">Producto(*)</label>
+            <select id="producto" name="producto">
+                <option value="default"> Seleccione un Producto</option>
+                <?php
+                include '../../../config/conexionBD.php';
+                $sql = "SELECT * FROM fer_producto WHERE fer_pro_el='N';";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $codigo = $row["fer_pro_id"];
+                        $desc = $row["fer_pro_nombre"];
+                        echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
+                    }
+                }
+                ?>
+            </select>
+            <span id="mensajeProducto" class="error"> </span>
+            <br>
+            <label for="stock">Stock(*)</label> 
+            <input class="in" type="text" id="stock" name="stock" value="" placeholder="Ingrese su descripción ..." />
+            <span id="mensajeStock" class="error"></span>
+            <br>
+            <label for="sucursal">Sucursal(*)</label>
+            <select id="sucursal" name="sucursal">
+                <option value="default"> Seleccione una Sucursal</option>
+                <?php
+                $sql1 = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
+                $result1 = $conn->query($sql1);
+                if ($result1->num_rows > 0) {
+                    while ($row1 = $result1->fetch_assoc()) {
+                        $codigo = $row1["fer_suc_id"];
+                        $desc = $row1["fer_suc_direccion"];
+                        echo $desc;
+                        echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
+                    }
+                }
+                ?>
+            </select>
+            <span id="mensajeSucursal" class="error"></span>
+            <br>
+            <input class="in" type="submit" id="crear" name="crear" value="Aceptar" />
+            <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+        </div>
+    </form>
 
-<table style="width:100%" border="1">
-        <tr>
-            <th>Direccion</th>
-            <th>Telefono</th>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-            <th>Actualizar</th>
-            <th>Eliminar</th>
-        </tr>
-        <?php
-        include "../../../config/conexionBD.php";
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el = 'N'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-<<<<<<< HEAD
-                echo "   <td>" . $row['fec_suc_telefono'] . "</td>";
-                echo "   <td>" . $row['fec_suc_direccion'] . "</td>";
-=======
-                echo "   <td>" . $row['fer_suc_direccion'] . "</td>";
-                echo "   <td>" . $row['fer_suc_telefono'] . "</td>";
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-                echo "   <td>" . "<a href = 'actualizar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Eliminar</a>" . "</td>";
-                echo "</tr>";
-            }
-            $conn->close();
-        }
-        ?>
-        </section>
-    </table>
-<<<<<<< HEAD
-=======
-
+    <br>
 
     <footer>
         <section id="pa">
@@ -140,7 +148,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         <section id="fot">
             <h2>REDES SOCIALES</h1>
                 <div>
-                    <ul>
+                <ul>
                         <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
                         <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
                         <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
@@ -152,7 +160,8 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         <section id="fot1">
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
-    </footer>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
+    </footer>    
+
 </body>
+
 </html>

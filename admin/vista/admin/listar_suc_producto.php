@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -10,20 +8,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 }
 ?>
 
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Listar Sucursales</title>
-<<<<<<< HEAD
-</head>
-<body>
-<table style="width:100%" border="1">
-        <tr>
-            <th>Telefono</th>
-            <th>Direccion</th>
-=======
+    <title>Listar Sucursal Producto</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
@@ -76,30 +65,40 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     </header>
 
 
-<table style="width:100%" border="1">
+
+    <table style="width:100%" border="1">
         <tr>
-            <th>Direccion</th>
-            <th>Telefono</th>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
+            <th>Codigo</th>
+            <th>Stock</th>
+            <th>Producto</th>
+            <th>Sucursal</th>
             <th>Actualizar</th>
             <th>Eliminar</th>
         </tr>
         <?php
         include "../../../config/conexionBD.php";
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el = 'N'";
+        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el = 'N'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $codigoPro = $row['fer_suc_pro_prod_id'];
+                $sql_pro = "SELECT fer_pro_nombre from fer_producto WHERE fer_pro_id = $codigoPro";
+                $result2 = $conn->query($sql_pro);
+                $row2 = $result2->fetch_assoc();
+
+                $codigoSuc = $row['fer_suc_pro_suc_id'];
+                $sql_suc = "SELECT fer_suc_direccion from fer_sucursal WHERE fer_suc_id = $codigoSuc";
+                $result3 = $conn->query($sql_suc);
+                $row3 = $result3->fetch_assoc();
+
+
                 echo "<tr>";
-<<<<<<< HEAD
-                echo "   <td>" . $row['fec_suc_telefono'] . "</td>";
-                echo "   <td>" . $row['fec_suc_direccion'] . "</td>";
-=======
-                echo "   <td>" . $row['fer_suc_direccion'] . "</td>";
-                echo "   <td>" . $row['fer_suc_telefono'] . "</td>";
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-                echo "   <td>" . "<a href = 'actualizar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "   <td>" . $row['fer_suc_pro_id'] . "</td>";
+                echo "   <td>" . $row['fer_suc_pro_stock'] . "</td>";
+                echo "   <td>" . $row2['fer_pro_nombre'] . "</td>";
+                echo "   <td>" . $row3['fer_suc_direccion'] . "</td>";
+                echo "   <td>" . "<a href = 'actualizar_suc_producto.php?codigo=" . $row['fer_suc_pro_id'] . "'>" . "Actualizar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_suc_producto.php?codigo=" . $row['fer_suc_pro_id'] . "'>" . "Eliminar</a>" . "</td>";
                 echo "</tr>";
             }
             $conn->close();
@@ -107,52 +106,77 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         ?>
         </section>
     </table>
-<<<<<<< HEAD
-=======
 
 
-    <footer>
-        <section id="pa">
-            <h2>
-                INFORMACIÓN DE CONTACTO
-            </h2>
-            <h3>
-                DIRECCION
-            </h3>
-            <h4>
-                Av. Gil Ramirez Davalos y Eliat Liut
-            </h4>
-            <h3>
-                TELEFONO
-            </h3>
-            <h3>
-                0981241115 - 0989224223
-            </h3>
-            <h3>
-                EMAIL
-            </h3>
-            <h4>
-                servicio@tupernoferreteria.com
-            </h4>
 
-        </section>
 
-        <section id="fot">
-            <h2>REDES SOCIALES</h1>
-                <div>
-                    <ul>
-                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
-                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
-                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
-                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
-                    </ul>
-                </div>
-        </section>
 
-        <section id="fot1">
-            <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
-        </section>
-    </footer>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+<footer>
+    <section id="pa">
+        <h2>
+            INFORMACIÓN DE CONTACTO
+        </h2>
+        <h3>
+            DIRECCION
+        </h3>
+        <h4>
+            Av. Gil Ramirez Davalos y Eliat Liut
+        </h4>
+        <h3>
+            TELEFONO
+        </h3>
+        <h3>
+            0981241115 - 0989224223
+        </h3>
+        <h3>
+            EMAIL
+        </h3>
+        <h4>
+            servicio@tupernoferreteria.com
+        </h4>
+
+    </section>
+
+    <section id="fot">
+        <h2>REDES SOCIALES</h1>
+            <div>
+                <ul>
+                    <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                    <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                    <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                    <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                </ul>
+            </div>
+    </section>
+
+    <section id="fot1">
+        <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
+    </section>
+</footer>
 </body>
 </html>

@@ -152,6 +152,8 @@ h2, h3, h4, h5, h6 {
     height: auto;
     padding: 1%;
     text-decoration: bold;
+    text-align: center;
+
 }
 
 #fot {
@@ -252,4 +254,9 @@ td {
     background-color: Gray;
     color: black;
     text-align: center;
+}
+#inf{
+    text-align: center;
+    float: left;
+
 }

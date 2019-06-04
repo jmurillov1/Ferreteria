@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -9,25 +7,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
-
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Listar Sucursales</title>
-<<<<<<< HEAD
-</head>
-<body>
-<table style="width:100%" border="1">
-        <tr>
-            <th>Telefono</th>
-            <th>Direccion</th>
-=======
+    <title>Actualizar Sucursal Producto</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
-<body>
 
 <header>
         <section>
@@ -74,42 +62,96 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </nav>
         </section>
     </header>
+    
+    <h1>Actualizar Sucursal Producto</h1>
+
+    <?php
+    include "../../../config/conexionBD.php";
+    $codigo_suc_pro = $_GET['codigo'];
+    $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_id = $codigo_suc_pro AND fer_suc_pro_el = 'N'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            //$precio = $row["fer_pro_precio"];
+            ?>
+            <form id="form" method="POST" enctype="multipart/form-data" action="../../controladores/admin/actualizar_suc_producto.php">
+                <div class>
+                    <input class="in" type="hidden" id="codigo" name="codigo" value="<?php echo $row["fer_suc_pro_id"]; ?>" />
+                    
+                    <label for="stock">Stock(*)</label>
+                    <input class="in" type="text" id="stock" name="stock" value="<?php echo $row["fer_suc_pro_stock"]; ?>" />
+                    <span id="mensajeStock" class="error"> </span>
+                    <br>
+                    
+                    <label for="pro">Producto(*)</label>
+                    <select id="pro" name="pro">
+                        <option value="default"></option>
+                        <?php
+                        include '../../../config/conexionBD.php';
+                        $sql = "SELECT * FROM fer_producto WHERE fer_pro_el='N';";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while ($row2 = $result->fetch_assoc()) {
+                                $codigo = $row2["fer_pro_id"];
+                                $prod = $row2["fer_pro_nombre"];
+                                if ($row["fer_suc_pro_prod_id"] == $codigo) {
+                                    echo "<option value='" . $codigo . "'selected>" . $prod . "</option>";
+                                } else {
+                                    echo "<option  value='" . $codigo . "'>" . $prod . "</option>";
+                                }
+                            }
+                        }
+                        ?>
+                    </select>
+                    <span id="mensajeProducto" class="error"></span>
+                    <br>
 
 
-<table style="width:100%" border="1">
-        <tr>
-            <th>Direccion</th>
-            <th>Telefono</th>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-            <th>Actualizar</th>
-            <th>Eliminar</th>
-        </tr>
+                    <label for="suc">Sucursal(*)</label>
+                    <select id="suc" name="suc">
+                        <option value="default"></option>
+                        <?php
+                        include '../../../config/conexionBD.php';
+                        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
+                        $result1 = $conn->query($sql);
+                        if ($result1->num_rows > 0) {
+                            while ($row3 = $result1->fetch_assoc()) {
+                                $codigo1 = $row3["fer_suc_id"];
+                                $suc = $row3["fer_suc_direccion"];
+                                if ($row["fer_suc_pro_suc_id"] == $codigo1) {
+                                    echo "<option value='" . $codigo1 . "'selected>" . $suc . "</option>";
+                                    
+                                } else {
+                                    echo "<option  value='" . $codigo . "'>" . $suc . "</option>";
+                                }
+                            }
+                        }
+                        ?>
+                    </select>
+                    <span id="mensajeSucursal" class="error"></span>
+                    <br>
+
+                </div>
+
+                <input class="in" type="submit" value="Actualizar" />
+                <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+            </form>
         <?php
-        include "../../../config/conexionBD.php";
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el = 'N'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-<<<<<<< HEAD
-                echo "   <td>" . $row['fec_suc_telefono'] . "</td>";
-                echo "   <td>" . $row['fec_suc_direccion'] . "</td>";
-=======
-                echo "   <td>" . $row['fer_suc_direccion'] . "</td>";
-                echo "   <td>" . $row['fer_suc_telefono'] . "</td>";
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-                echo "   <td>" . "<a href = 'actualizar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Eliminar</a>" . "</td>";
-                echo "</tr>";
-            }
-            $conn->close();
-        }
-        ?>
-        </section>
-    </table>
-<<<<<<< HEAD
-=======
+    }
+} else {
+    echo "<p>Ha ocurrido un error inesperado !</p>";
+    echo "<p>" . mysqli_error($conn) . "</p>";
+}
+$conn->close();
+?>
 
+
+
+
+
+
+    
+    <br>
 
     <footer>
         <section id="pa">
@@ -136,7 +178,6 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </h4>
 
         </section>
-
         <section id="fot">
             <h2>REDES SOCIALES</h1>
                 <div>
@@ -148,11 +189,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </ul>
                 </div>
         </section>
-
         <section id="fot1">
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
     </footer>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
 </body>
+
 </html>
+

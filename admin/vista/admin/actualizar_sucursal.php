@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -9,24 +7,16 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
-
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Listar Sucursales</title>
-<<<<<<< HEAD
-</head>
-<body>
-<table style="width:100%" border="1">
-        <tr>
-            <th>Telefono</th>
-            <th>Direccion</th>
-=======
+    <title>Actualizar Sucursal</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
+
 <body>
 
 <header>
@@ -75,43 +65,43 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </header>
 
+<h1>Actualiza Sucursal</h1>
 
-<table style="width:100%" border="1">
-        <tr>
-            <th>Direccion</th>
-            <th>Telefono</th>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-            <th>Actualizar</th>
-            <th>Eliminar</th>
-        </tr>
+<section>
+    <?php
+    include "../../../config/conexionBD.php";
+    $codigo_suc = $_GET['codigo'];
+    $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_id = $codigo_suc AND fer_suc_el = 'N'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <form id="form" method="POST" action="../../controladores/admin/actualizar_sucursal.php">
+                <div class=" parte1">
+                    <input class="in" type="hidden" id="codigo" name="codigo" value="<?php echo $row['fer_suc_id']; ?>" />
+                    <br>
+                    <label for="desc">Telefono(*)</label>
+                    <input class="in" type="text" id="telefono" name="telefono" value="<?php echo $row["fer_suc_telefono"]; ?>" />
+                    <br>
+                    <label for="desc">Direccion(*)</label>
+                    <input class="in" type="text" id="direccion" name="direccion" value="<?php echo $row["fer_suc_direccion"]; ?>" />
+                    <br>
+                    <input class="in" type="submit" value="Actualizar" />
+                    <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+            </form>
         <?php
-        include "../../../config/conexionBD.php";
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el = 'N'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-<<<<<<< HEAD
-                echo "   <td>" . $row['fec_suc_telefono'] . "</td>";
-                echo "   <td>" . $row['fec_suc_direccion'] . "</td>";
-=======
-                echo "   <td>" . $row['fer_suc_direccion'] . "</td>";
-                echo "   <td>" . $row['fer_suc_telefono'] . "</td>";
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
-                echo "   <td>" . "<a href = 'actualizar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_sucursal.php?codigo=" . $row['fer_suc_id'] . "'>" . "Eliminar</a>" . "</td>";
-                echo "</tr>";
-            }
-            $conn->close();
-        }
-        ?>
-        </section>
-    </table>
-<<<<<<< HEAD
-=======
+    }
+} else {
+    echo "<p>Ha ocurrido un error inesperado !</p>";
+    echo "<p>" . mysqli_error($conn) . "</p>";
+}
+$conn->close();
+?>
+</section>
 
+<br>
 
-    <footer>
+<footer>
         <section id="pa">
             <h2>
                 INFORMACIÓN DE CONTACTO
@@ -153,6 +143,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
     </footer>
->>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
+
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $cod = $_SESSION['fer_usu_codigo'];
+echo $cod;
 $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
