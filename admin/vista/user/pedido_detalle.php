@@ -17,9 +17,41 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <link href="../../../public/vista/css/stables.css" rel="stylesheet" type="text/css" />
     <link href="../../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../controladores/js/funciones.js"> </script>
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
 </head>
 
 <body id='res'>
+
+<header>
+        <section>
+            <nav id="moopio">
+                <ul id="menuPrincipal">
+                    <li><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="carrito.php">Crear Pedido</a></li>
+                            <li><a href="listar_pedido.php">Listar Pedidos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">FACTURAS</a>
+                        <ul>
+                            <li><a href="crear_factura.php">Crear Factura</a></li>
+                            <li><a href="listar_facturas.php">Listar Facturas</a></li>
+                        </ul>
+                    </li>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                        <ul>
+                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
+                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
+                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
+                            <li><a href="../../../config/cerrarSesionUser.php">CERRAR SESION</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    
     <?php
     include '../../../config/conexionBD.php';
     $tot = 0.00;
@@ -31,13 +63,15 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         }
     }
     ?>
-    <header class="cabis">
-        <h2>
+
+<br>
+        <h1>
             Orden
-        </h2>
-    </header>
+        </h1>
+<br>
+  
     <a href="pedido_detalle.php" class="carr">
-        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
+        <p id='car'>Carrito<img id='imagen2' src='../images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </p>
     </a>
     <table id="tbl">
         <tr>
@@ -70,7 +104,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 ?>
                 <tr>
                     <td>
-                        <center><button onclick="eliminar(<?php echo $codigo ?>)"><img id='foto' src='images/bote.jpg' alt='titulo foto' /></button></center>
+                        <center><button onclick="eliminar(<?php echo $codigo ?>)"><img id='foto' src='../images/bote.jpg' alt='titulo foto' /></button></center>
                     </td>
                     <td>
                         <center><img id='foto' src='data:image/*;base64,<?php echo base64_encode($foto) ?>' alt='titulo foto' /></center>
@@ -105,16 +139,58 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     </table>
     <div>
         <label for="total">Total a Pagar</label>
-        <input id="tot" value="<?php echo number_format($tot, 2) ?>">
+        <input class="in" id="tot" value="<?php echo number_format($tot, 2) ?>">
     </div>
     <button onclick="confirmar()"> Confirmar </button>
     <a href="index.php" onclick="cancelar()"> Cancelar </a>
     <a href='carrito.php'>Comprar</a>
+
+
+
+
     <footer>
-        <h5> Copyright </h5>
-        <h5> Jordan Murillo </h5>
-        <h5> 2019 </h5>
-    </footer>
+    <section id="pa">
+        <h2>
+            INFORMACIÓN DE CONTACTO
+        </h2>
+        <h3>
+            DIRECCION
+        </h3>
+        <h4>
+            Av. Gil Ramirez Davalos y Eliat Liut
+        </h4>
+        <h3>
+            TELEFONO
+        </h3>
+        <h3>
+            0981241115 - 0989224223
+        </h3>
+        <h3>
+            EMAIL
+        </h3>
+        <h4>
+            servicio@tupernoferreteria.com
+        </h4>
+
+    </section>
+
+    <section id="fot">
+        <h2>REDES SOCIALES</h1>
+            <div>
+                <ul>
+                    <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                    <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                    <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                    <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                </ul>
+            </div>
+    </section>
+
+    <section id="fot1">
+        <h2> &copy; Copyright 2019 Powered by MurilloJ, AñazcoN, BenavidezA </h1>
+    </section>
+</footer>
+
 </body>
 
 </html>

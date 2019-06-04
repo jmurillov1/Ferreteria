@@ -16,6 +16,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <title>Eliminar  Usuario</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <script type="text/javascript" src="../../controladores/js/funciones.js"> </script>
 </head>
 
 <body>
@@ -29,19 +30,22 @@ $row = $result->fetch_assoc();
 ?>
 
 <header>
-
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
                     <li><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="carrito.php">Crear Pedido</a></li>
+                            <li><a href="listar_pedido.php">Listar Pedidos</a></li>
+                        </ul>
                     </li>
                     <li><a href="">FACTURAS</a>
                         <ul>
-                            <li>...</li>
-                            <li>...</li>
+                            <li><a href="crear_factura.php">Crear Factura</a></li>
+                            <li><a href="listar_facturas.php">Listar Facturas</a></li>
                         </ul>
                     </li>
-                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="modificarUsuario.php">MODIFICAR</a></li>
                             <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
@@ -49,12 +53,11 @@ $row = $result->fetch_assoc();
                             <li><a href="../../../config/cerrarSesionUser.php">CERRAR SESION</a></li>
                         </ul>
                     </li>
-                    
                 </ul>
             </nav>
         </section>
     </header>
-
+    
     <h1> ELIMINAR USUARIO</h1>
     <br>
 
