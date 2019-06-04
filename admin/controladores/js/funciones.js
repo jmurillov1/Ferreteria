@@ -167,4 +167,73 @@ function buscarUsuario(){
       xmlhttp.send();
   } 
   return false;
+} 
+
+function buscarSucursal(){ 
+  var sucursal = document.getElementById("sucursal").value;
+  //location.href=  "../../controladores/user/buscar.php?correo="+correo
+  if(sucursal==""){ 
+    /*document.getElementById("informacion").innerHTML=""; */
+    location.href = "listar_sucursal.php"
+  }else{ 
+      if(window.XMLHttpRequest) { 
+          xmlhttp= new XMLHttpRequest(); 
+      }else{ 
+          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+      } 
+     xmlhttp.onreadystatechange= function(){ 
+          if(this.readyState == 4 && this.status == 200){ 
+              document.getElementById("informacion").innerHTML=this.responseText;
+          }
+      }; 
+      xmlhttp.open("GET","../../controladores/admin/buscar_sucursales.php?sucursal="+sucursal,true); 
+      xmlhttp.send();
+  } 
+  return false;
+} 
+
+function buscarProducto(){ 
+  var producto = document.getElementById("producto").value;
+  //location.href=  "../../controladores/user/buscar.php?correo="+correo
+  if(producto==""){ 
+    /*document.getElementById("informacion").innerHTML=""; */
+    location.href = "listar_productos.php"
+  }else{ 
+      if(window.XMLHttpRequest) { 
+          xmlhttp= new XMLHttpRequest(); 
+      }else{ 
+          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+      } 
+     xmlhttp.onreadystatechange= function(){ 
+          if(this.readyState == 4 && this.status == 200){ 
+              document.getElementById("informacion").innerHTML=this.responseText;
+          }
+      }; 
+      xmlhttp.open("GET","../../controladores/admin/buscar_productos.php?producto="+producto,true); 
+      xmlhttp.send();
+  } 
+  return false;
+} 
+
+function buscarProductoSuc(){ 
+  var producto = document.getElementById("producto_suc").value;
+  //location.href=  "../../controladores/user/buscar.php?correo="+correo
+  if(producto==""){ 
+    /*document.getElementById("informacion").innerHTML=""; */
+    location.href = "listar_suc_producto.php"
+  }else{ 
+      if(window.XMLHttpRequest) { 
+          xmlhttp= new XMLHttpRequest(); 
+      }else{ 
+          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+      } 
+     xmlhttp.onreadystatechange= function(){ 
+          if(this.readyState == 4 && this.status == 200){ 
+              document.getElementById("informacion").innerHTML=this.responseText;
+          }
+      }; 
+      xmlhttp.open("GET","../../controladores/admin/buscar_suc_producto.php?producto="+producto,true); 
+      xmlhttp.send();
+  } 
+  return false;
 }

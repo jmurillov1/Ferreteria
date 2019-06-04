@@ -84,7 +84,7 @@ $row = $result->fetch_assoc();
                 <option value="default"> Seleccione un Producto</option>
                 <?php
                 include '../../../config/conexionBD.php';
-                $sql = "SELECT * FROM fer_producto WHERE fer_pro_el='N';";
+                $sql = "SELECT * FROM fer_producto WHERE fer_pro_el='N'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -105,7 +105,7 @@ $row = $result->fetch_assoc();
             <select id="sucursal" name="sucursal">
                 <option value="default"> Seleccione una Sucursal</option>
                 <?php
-                $sql1 = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
+                $sql1 = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N'";
                 $result1 = $conn->query($sql1);
                 if ($result1->num_rows > 0) {
                     while ($row1 = $result1->fetch_assoc()) {

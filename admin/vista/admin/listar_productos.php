@@ -12,7 +12,8 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Listar Productos</title>
-    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" /> 
+    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
@@ -75,8 +76,8 @@ $row = $result->fetch_assoc();
     <br>
 
     <h1>Listar Productos</h1>
-
-    <table style="width:100%" border="1">
+    <input type="text" id="producto_suc" placeholder="Ingrese el producto a buscar" onkeyup="buscarProductoSuc()">
+    <table style="width:100%" border="1" id="informacion">
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
