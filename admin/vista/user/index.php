@@ -15,6 +15,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <title>Principal Usuario</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
+    <script type="text/javascript" src="../../controladores/js/funciones.js"> </script>
 
 </head>
 
@@ -23,6 +24,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <?php
     include '../../../config/conexionBD.php';
     $codigo = $_SESSION['fer_usu_codigo'];
+    $codigos = 0;
     $sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -57,28 +59,21 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     </header>
     <h1>Bienvenido Usuario</h1>
 
-
-
-    <label for="desc">Categoria(*)</label>
+    <label for="desc">Sucursal(*)</label>
     <select id="cat" name="cat">
-        <option value="seleccione Categoria"></option>
+        <option> Seleccione Sucursal</option>
         <?php
         include '../../../config/conexionBD.php';
-        $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
+        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row2 = $result->fetch_assoc()) {
-                $codigo = $row2["fer_cat_id"];
-                $desc = $row2["fer_cat_desc"];
-                if ($row["fer_cat_id"] == $codigo) {
-                    echo "<option value='" . $codigo . "'selected>" . $desc . "</option>";
-                } else {
-                    echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
-                }
+                $codigos = $row2["fer_suc_id"];
+                $desc = $row2["fer_suc_direccion"];
+                echo "<option id='item$codigos' onclick='val($codigos)' value='" . $codigos . "'>" . $desc . "</option>";
             }
         }
         ?>
-
 
         <footer>
             <section id="pa">

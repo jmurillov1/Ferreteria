@@ -1,7 +1,6 @@
 <?php
 session_start();
 $cod = $_SESSION['fer_usu_codigo'];
-echo $cod;
 $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
@@ -20,51 +19,28 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 </head>
 
 <body>
+    <?php
+    include '../../config/conexionBD.php';
+    $tot = 0.00;
+    $suc = $_SESSION["suc"];
+    $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tot = $tot + $row["SUM(fer_pdt_cant)"];
+        }
+    }
+    ?>
     <header class="cabis">
         <h4>Productos</h4>
     </header>
     <a href="pedido_detalle.php" class="carr">
-        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='0'> </h5>
+        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
     </a>
-    <?php
-    include '../../config/conexionBD.php';
-    $sql1 = "SELECT MIN(fer_suc_id) FROM fer_sucursal WHERE fer_suc_el='N';";
-    $result1 = $conn->query($sql1);
-    if ($result1->num_rows > 0) {
-        while ($row = $result1->fetch_assoc()) {
-            $ident = $row["MIN(fer_suc_id)"];
-        }
-    }
-    $sql2 = "SELECT MAX(fer_ped_cab_id) FROM fer_pedido_cabecera WHERE fer_ped_cab_el='N';";
-    $result2 = $conn->query($sql2);
-    if ($result2 == null) {
-        while ($row = $result2->fetch_assoc()) {
-            $cab = $row["MAX(fer_ped_cab_id)"];
-            $_SESSION['cab'] = $cab;
-            echo "<input id='cab' value='$cab'>";
-        }
-    } else {
-        echo "<input id='cab' value='1'>";
-        $_SESSION['cab'] = 1;
-    }
-    ?>
-    <select id="sucursal" name="sucursal">
-        <?php
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $codigo = $row["fer_suc_id"];
-                $desc = $row["fer_suc_direccion"];
-                echo "<option onclick='cargar($codigo)' id='item$codigo' value='" . $codigo . "'>" . $desc . "</option>";
-            }
-        }
-        ?>
-    </select>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
-    <article id="info">
+    <div id="info">
         <?php
-        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$ident;";
+        $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_suc_id=$suc;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -101,7 +77,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         }
         $conn->close();
         ?>
-    </article>
+    </div>
     <footer>
         <h5> Copyright </h5>
         <h5> Tu Perno </h5>

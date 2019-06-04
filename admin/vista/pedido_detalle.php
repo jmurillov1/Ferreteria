@@ -4,7 +4,6 @@ $cod = $_SESSION['fer_usu_codigo'];
 $nombre = $_SESSION['fer_usu_nombres'];
 $apellido = $_SESSION['fer_usu_apellidos'];
 $foto = $_SESSION['fer_usu_foto'];
-$cab = $_SESSION['cab'];
 if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
@@ -20,19 +19,26 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <script type="text/javascript" src="../controladores/js/funciones.js"> </script>
 </head>
 
-<body>
+<body id='res'>
     <?php
     include '../../config/conexionBD.php';
-    /*$sqlu = "SELECT * FROM usuario WHERE usu_codigo='$codigoui';";
-    $resultu = $conn->query($sqlu);
-    $row = $resultu->fetch_assoc();
-    $foto = $row["usu_foto"];*/
+    $tot = 0.00;
+    $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tot = $tot + $row["SUM(fer_pdt_cant)"];
+        }
+    }
     ?>
     <header class="cabis">
         <h2>
-            Pedido Detalle
+            Orden
         </h2>
     </header>
+    <a href="pedido_detalle.php" class="carr">
+        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
+    </a>
     <table id="tbl">
         <tr>
             <th></th>
@@ -43,15 +49,15 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             <th>Subtotal</th>
         </tr>
         <?php
-        $sql = "SELECT * FROM fer_pedido_detalle WHERE fer_ped_det_el='N' AND fer_ped_det_ped_cab_id=$cab;";
+        $sql = "SELECT * FROM fer_ped_det_temp";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $codigo = $row["fer_ped_det_id"];
-                $pro = $row["fer_ped_det_suc_pro_id"];
-                $cantidad = $row["fer_ped_det_cant"];
-                $subtotal = $row["fer_ped_det_subtotal"];
-                $sql1 = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_id=$pro;";
+                $codigo = $row["fer_pdt_id"];
+                $pros = $row["fer_pdt_suc_pro_id"];
+                $cantidad = $row["fer_pdt_cant"];
+                $subtotal = $row["fer_pdt_subtotal"];
+                $sql1 = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_id=$pros;";
                 $result1 = $conn->query($sql1);
                 $row1 = $result1->fetch_assoc();
                 $stock = $row1["fer_suc_pro_stock"];
@@ -63,8 +69,12 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 $foto = $row2["fer_pro_foto"];
                 ?>
                 <tr>
-                    <td><center><a href=""><img id='foto' src='images/bote.jpg' alt='titulo foto' /></a></center></td>
-                    <td><center><img id='foto' src='data:image/*;base64,<?php echo base64_encode($foto) ?>' alt='titulo foto' /></center></td>
+                    <td>
+                        <center><button onclick="eliminar(<?php echo $codigo ?>)"><img id='foto' src='images/bote.jpg' alt='titulo foto' /></button></center>
+                    </td>
+                    <td>
+                        <center><img id='foto' src='data:image/*;base64,<?php echo base64_encode($foto) ?>' alt='titulo foto' /></center>
+                    </td>
                     <td><?php echo $npro; ?></td>
                     <td>
                         <button id="menosf" onclick="menos1(<?php echo $codigo ?>);cargarProducto(<?php echo $codigo ?>);actualizar(<?php echo $codigo ?>)">ꓦ</button>
@@ -76,14 +86,30 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 </tr>
             <?php
         }
+    } else {
+        echo "<td>";
+        echo "No hay productos seleccionados";
+        echo "</td>";
     }
-    $sqlc = "SELECT SUM(fer_ped_det_subtotal) FROM fer_pedido_detalle WHERE fer_ped_det_el='N' AND fer_ped_det_ped_cab_id=$cab ;";
-    $resultc = $conn->query($sqlc);
-    $row = $resultc->fetch_assoc();
-    $tot =  $row["SUM(fer_ped_det_subtotal)"];
+
+    $tot = 0.00;
+    $sql = "SELECT * FROM fer_ped_det_temp";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $tot = $tot + $row["fer_pdt_subtotal"];
+        }
+    }
+    $conn->close();
     ?>
     </table>
-    <div><label for="total">Total a Pagar</label><input id="total" value="<?php echo $tot ?>"></div>
+    <div>
+        <label for="total">Total a Pagar</label>
+        <input id="tot" value="<?php echo number_format($tot, 2) ?>">
+    </div>
+    <button onclick="confirmar()"> Confirmar </button>
+    <a href="user/index.php" onclick="cancelar()"> Cancelar </a>
+    <a href='../vista/carrito.php'>Comprar</a>
     <footer>
         <h5> Copyright </h5>
         <h5> Jordan Murillo </h5>

@@ -1,4 +1,3 @@
-var datos = []
 function previewImage(nb) {
   var reader = new FileReader()
   reader.readAsDataURL(document.getElementById('uploadImage' + nb).files[0])
@@ -29,18 +28,12 @@ function menos(cod) {
 
 function agregar(cod) {
   var cant = Number(document.getElementById("sel").value)
-  console.log(cod)
+  console.log("codigo: " + cod)
   if (cant == 0 || cant != 0) {
     var ncant = Number(document.getElementById("ctd" + cod).value)
-    console.log(ncant)
-    var cab = Number(document.getElementById("cab").value)
-    console.log(cab)
-    var suc = Number(document.getElementById("sucursal").value)
-    console.log(suc)
-    tot = cant + ncant
+    console.log("cantidad: " + ncant)
     document.getElementById("sel").value = cant + ncant
-    location.href = "../controladores/anadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant + "&cab=" + cab + "&suc=" + suc
-    /*if (ncant == "") {
+    if (ncant == "") {
     } else {
       if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -52,12 +45,12 @@ function agregar(cod) {
       xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 & this.status == 200) {
           alert("llegue")
-          console.log("Realizado")
-        };
-        xmlhttp.open("GET", "../controladores/anadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant + "&cab=" + cab + "&suc=" + suc, true)
-        xmlhttp.send()
+        }
       }
-      return false*/
+      xmlhttp.open("GET", "../controladores/add_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true)
+      xmlhttp.send()
+      return false
+    }
   }
 }
 
@@ -73,13 +66,13 @@ function actualizar(val) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 & this.status == 200) {
       //alert(this.responseText)
-      var total = 0;
+      var total = 0
       for (var i = 1; document.getElementById('tbl').rows[i]; i++) {
         total += Number(document.getElementById('tbl').rows[i].cells[5].innerHTML);
       }
-      document.getElementById('total').value = total.toFixed(2)
+      document.getElementById('tot').value = total.toFixed(2)
     }
-  };
+  }
   xmlhttp.open("GET", "../controladores/actualizar_carrito.php?codigo=" + val + "&cantidad=" + ncant, true)
   xmlhttp.send()
   return false
@@ -87,7 +80,6 @@ function actualizar(val) {
 
 function cargar(cod) {
   var se = document.getElementById("item" + cod).value
-  console.log(se)
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
@@ -105,9 +97,41 @@ function cargar(cod) {
   return false
 }
 
-function val() {
-  var cant = Number(document.getElementById("sel").value).toFixed(2)
-  console.log(cant)
+function val(cod) {
+  var suc = document.getElementById("item" + cod).value
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      alert("llegue")
+    }
+  };
+  xmlhttp.open("GET", "../../controladores/obtener_sucursal.php?codigo=" + suc, true)
+  xmlhttp.send()
+  return false
+}
+
+function cancelar() {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      alert("llegue")
+    }
+  };
+  xmlhttp.open("GET", "../controladores/eliminar_orden.php", true)
+  xmlhttp.send()
+  return false
 }
 
 function cargarProducto(val) {
@@ -144,28 +168,67 @@ function menos1(val) {
   } else {
     document.getElementById("cant" + val).value = 1
   }
-}  
+}
 
-function buscarUsuario(){ 
+function eliminar(cod) {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 & this.status == 200) {
+      //alert("llegue")
+      document.getElementById('res').innerHTML = this.responseText;
+    }
+  };
+  xmlhttp.open("GET", "../controladores/eliminar_item.php?codigo=" + cod, true)
+  xmlhttp.send()
+  return false
+}
+
+function buscarUsuario() {
   var nombre = document.getElementById("nombre").value;
   //location.href=  "../../controladores/user/buscar.php?correo="+correo
-  if(nombre==""){ 
+  if (nombre == "") {
     /*document.getElementById("informacion").innerHTML=""; */
     location.href = "usuarios.php"
-  }else{ 
-      if(window.XMLHttpRequest) { 
-          xmlhttp= new XMLHttpRequest(); 
-      }else{ 
-          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
-      } 
-     xmlhttp.onreadystatechange= function(){ 
-          if(this.readyState == 4 && this.status == 200){ 
-              document.getElementById("informacion").innerHTML=this.responseText;
-          }
-      }; 
-      xmlhttp.open("GET","../../controladores/admin/buscarUsuarios.php?nombre="+nombre,true); 
-      xmlhttp.send();
-  } 
+  } else {
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("informacion").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "../../controladores/admin/buscarUsuarios.php?nombre=" + nombre, true);
+    xmlhttp.send();
+  }
+  return false;
+}
+
+function confirmar() {
+  var total = Number(document.getElementById("total").value)
+  if (nombre == "") {
+  } else {
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    } else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        alert("Pedido Creado")
+      }
+    };
+    xmlhttp.open("GET", "../controladores/crear_pedido.php?total=" + total, true);
+    xmlhttp.send();
+  }
   return false;
 } 
 
