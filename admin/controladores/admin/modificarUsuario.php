@@ -26,8 +26,6 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     
     $fechaNacimiento = isset($_POST["fechaNacimiento"]) ? trim($_POST["fechaNacimiento"]) : null; 
 
-
-
     date_default_timezone_set("America/Guayaquil"); 
     $fecha = date('Y-m-d H:i:s', time());
     if ($_FILES['uploadImage1']["tmp_name"] != null) {

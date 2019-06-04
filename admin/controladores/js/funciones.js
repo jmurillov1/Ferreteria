@@ -215,7 +215,8 @@ function buscarUsuario() {
 function confirmar() {
   var total = Number(document.getElementById("tot").value).toFixed(2)
   console.log(total)
-  if (total == "") {
+  location.href = "../controladores/crear_pedido.php?total=" + total
+  /*if (total == "") {
   } else {
     if (window.XMLHttpRequest) {
       xmlhttp = new XMLHttpRequest();
@@ -226,11 +227,11 @@ function confirmar() {
       if (this.readyState == 4 && this.status == 200) {
         alert("Pedido Creado")
         cancelar();
-        location.href = "index.php";
+        location.href = "user/index.php";
       }
     };
     xmlhttp.open("GET", "../controladores/crear_pedido.php?total=" + total, true);
     xmlhttp.send();
     return false;
-  }
+  }*/
 }
