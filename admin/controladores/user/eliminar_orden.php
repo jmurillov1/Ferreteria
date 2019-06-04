@@ -10,12 +10,12 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de usuarios</title>
-    <script type="text/javascript" src="../controladores/js/funciones.js"> </script>
+    <script type="text/javascript" src="../js/funciones.js"> </script>
 </head>
 
 <body>
     <?php
-    include '../../config/conexionBD.php';
+    include '../../../config/conexionBD.php';
     $sqlp = "DELETE FROM fer_ped_det_temp;";
     if ($conn->query($sqlp) === TRUE) {
         echo "<p>Se ha creado el pedido correctamemte !!!</p>";

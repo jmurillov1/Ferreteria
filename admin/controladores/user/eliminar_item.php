@@ -14,13 +14,13 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de usuarios</title>
-    <script type="text/javascript" src="../controladores/js/funciones.js"> </script>
+    <script type="text/javascript" src="../js/funciones.js"> </script>
 </head>
 
 <body id="res">
     <?php
     $codigo = $_GET['codigo'];
-    include '../../config/conexionBD.php';
+    include '../../../config/conexionBD.php';
     //$sqlp = "DELETE FROM fer_pedido_detalle WHERE fer_ped_det_id=$codigo;";
     $sqlp = "DELETE FROM fer_ped_det_temp WHERE fer_pdt_id=$codigo;";
     if ($conn->query($sqlp) === TRUE) {

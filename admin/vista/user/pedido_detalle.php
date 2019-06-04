@@ -14,14 +14,14 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de usuarios</title>
-    <link href="../../public/vista/css/stables.css" rel="stylesheet" type="text/css" />
-    <link href="../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../controladores/js/funciones.js"> </script>
+    <link href="../../../public/vista/css/stables.css" rel="stylesheet" type="text/css" />
+    <link href="../../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../controladores/js/funciones.js"> </script>
 </head>
 
 <body id='res'>
     <?php
-    include '../../config/conexionBD.php';
+    include '../../../config/conexionBD.php';
     $tot = 0.00;
     $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";
     $result = $conn->query($sql);
@@ -108,8 +108,8 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <input id="tot" value="<?php echo number_format($tot, 2) ?>">
     </div>
     <button onclick="confirmar()"> Confirmar </button>
-    <a href="user/index.php" onclick="cancelar()"> Cancelar </a>
-    <a href='../vista/carrito.php'>Comprar</a>
+    <a href="index.php" onclick="cancelar()"> Cancelar </a>
+    <a href='carrito.php'>Comprar</a>
     <footer>
         <h5> Copyright </h5>
         <h5> Jordan Murillo </h5>

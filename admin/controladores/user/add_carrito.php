@@ -23,7 +23,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         $cantidad = $_GET['cantidad'];
         $val2 = false;
         $total = 0.00;
-        include '../../config/conexionBD.php';
+        include '../../../config/conexionBD.php';
 
         $sql = "SELECT * FROM fer_sucursal_producto WHERE fer_suc_pro_el='N' AND fer_suc_pro_id=$codigo;";
         $result = $conn->query($sql);

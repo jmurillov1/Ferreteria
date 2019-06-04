@@ -16,7 +16,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     <?php
     //incluir conexión a la base de datos
     include '../../../config/conexionBD.php';
-    $codigo = $_GET['fer_usu_codigo'];
+    $codigo = $_SESSION['fer_usu_codigo'];
 
     //Si voy a eliminar físicamente el registro de la tabla
     //$sql = "DELETE FROM usuario WHERE codigo = '$codigo'";

@@ -24,7 +24,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         $val = false;
         $val2 = false;
         $total = 0.00;
-        include '../../config/conexionBD.php';
+        include '../../../config/conexionBD.php';
 
         $sql = "SELECT * FROM fer_ped_det_temp WHERE fer_pdt_id=$codigo;";
         $result = $conn->query($sql);

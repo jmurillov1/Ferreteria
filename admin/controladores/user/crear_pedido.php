@@ -19,7 +19,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <body>
     <table id="tbl">
         <?php
-        include '../../config/conexionBD.php';
+        include '../../../config/conexionBD.php';
         $suc = $_SESSION["suc"];
         $total = $_GET["total"];
         date_default_timezone_set("America/Guayaquil");

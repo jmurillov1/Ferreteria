@@ -14,13 +14,13 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de usuarios</title>
-    <link href="../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../controladores/js/funciones.js"> </script>
+    <link href="../../../public/vista/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../controladores/js/funciones.js"> </script>
 </head>
 
 <body>
     <?php
-    include '../../config/conexionBD.php';
+    include '../../../config/conexionBD.php';
     $tot = 0.00;
     $suc = $_SESSION["suc"];
     $sql = "SELECT SUM(fer_pdt_cant) FROM fer_ped_det_temp";

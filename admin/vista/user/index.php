@@ -35,7 +35,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 <ul id="menuPrincipal">
                     <li><a href="">PEDIDOS</a>
                         <ul>
-                            <li><a href="../carrito.php">Crear Pedido</a></li>
+                            <li><a href="carrito.php">Crear Pedido</a></li>
                             <li><a href="">....</a></li>
                         </ul>
                     </li>

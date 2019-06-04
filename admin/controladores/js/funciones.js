@@ -47,7 +47,7 @@ function agregar(cod) {
           alert("llegue")
         }
       }
-      xmlhttp.open("GET", "../controladores/add_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true)
+      xmlhttp.open("GET", "../../controladores/user/add_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true)
       xmlhttp.send()
       return false
     }
@@ -73,32 +73,14 @@ function actualizar(val) {
       document.getElementById('tot').value = total.toFixed(2)
     }
   }
-  xmlhttp.open("GET", "../controladores/actualizar_carrito.php?codigo=" + val + "&cantidad=" + ncant, true)
-  xmlhttp.send()
-  return false
-}
-
-function cargar(cod) {
-  var se = document.getElementById("item" + cod).value
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    // code for IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
-  }
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 & this.status == 200) {
-      //alert("llegue")
-    }
-  };
-  xmlhttp.open("GET", "../controladores/listar_productos_sucursal.php?codigo=" + cod, true)
+  xmlhttp.open("GET", "../../controladores/user/actualizar_carrito.php?codigo=" + val + "&cantidad=" + ncant, true)
   xmlhttp.send()
   return false
 }
 
 function val(cod) {
   var suc = document.getElementById("item" + cod).value
+  console.log(suc)
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
@@ -111,7 +93,7 @@ function val(cod) {
       alert("llegue")
     }
   };
-  xmlhttp.open("GET", "../../controladores/obtener_sucursal.php?codigo=" + suc, true)
+  xmlhttp.open("GET", "../../controladores/user/obtener_sucursal.php?codigo=" + suc, true)
   xmlhttp.send()
   return false
 }
@@ -129,7 +111,7 @@ function cancelar() {
       alert("llegue")
     }
   };
-  xmlhttp.open("GET", "../controladores/eliminar_orden.php", true)
+  xmlhttp.open("GET", "../../controladores/user/eliminar_orden.php", true)
   xmlhttp.send()
   return false
 }
@@ -184,7 +166,7 @@ function eliminar(cod) {
       document.getElementById('res').innerHTML = this.responseText;
     }
   };
-  xmlhttp.open("GET", "../controladores/eliminar_item.php?codigo=" + cod, true)
+  xmlhttp.open("GET", "../../controladores/user/eliminar_item.php?codigo=" + cod, true)
   xmlhttp.send()
   return false
 }
@@ -215,8 +197,7 @@ function buscarUsuario() {
 function confirmar() {
   var total = Number(document.getElementById("tot").value).toFixed(2)
   console.log(total)
-  location.href = "../controladores/crear_pedido.php?total=" + total
-  /*if (total == "") {
+  if (total == "") {
   } else {
     if (window.XMLHttpRequest) {
       xmlhttp = new XMLHttpRequest();
@@ -227,12 +208,11 @@ function confirmar() {
       if (this.readyState == 4 && this.status == 200) {
         alert("Pedido Creado")
         cancelar();
-        location.href = "user/index.php";
+        location.href = "index.php";
       }
     };
-    xmlhttp.open("GET", "../controladores/crear_pedido.php?total=" + total, true);
+    xmlhttp.open("GET", "../../controladores/user/crear_pedido.php?total=" + total, true);
     xmlhttp.send();
-<<<<<<< HEAD
   }
   return false;
 } 
@@ -304,8 +284,5 @@ function buscarProductoSuc(){
       xmlhttp.send();
   } 
   return false;
-=======
-    return false;
-  }*/
->>>>>>> 13aa266565988bb8c461ab11bf57bc65c0985bf3
-}
+  }
+
