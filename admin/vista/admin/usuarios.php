@@ -13,11 +13,14 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Usuarios</title>
-    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" /> 
+    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
+
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
+
 
 <?php
 include '../../../config/conexionBD.php';
@@ -78,8 +81,8 @@ $row = $result->fetch_assoc();
 
 
     <h1>Usuarios</h1>
-
-    <table style="width:100%" border="1px">
+    <input type = "text" id="nombre" placeholder="Ingrese el nombre a buscar" onkeyup = "buscarUsuario()"> 
+    <table style="width:100%" border="1px" id = "informacion">
         <tr>
             <th>Foto</th>
             <th>Cedula</th>

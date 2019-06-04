@@ -39,8 +39,8 @@ $row = $result->fetch_assoc();
                     </li>
                     <li id="ul"><a href="">CATEGORIA</a>
                         <ul>
-                            <li><a href="crear_categoria.php">CREAR</a></li>
-                            <li><a href="listar_categoria.php">LISTAR</a></li>
+                            <li><a href="crear_categoria.php">CREAR</a></li> 
+                            <li><a href="listar_categoria.php">LISTAR</a></li> 
                         </ul>
                     </li>
                     <li id="ul"><a href="">SUCURSAL</a>

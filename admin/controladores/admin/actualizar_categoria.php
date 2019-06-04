@@ -20,7 +20,11 @@
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
     }
+<<<<<<< HEAD
+    echo "<a href='../../vista/admin/listar_productos.php'>Regresar</a>";
+=======
     echo "<a href='../../vista/admin/listar_categoria.php'>Regresar</a>";
+>>>>>>> 3103f135191f09a723996883d4e395c72332d4b5
     $conn->close();
 
     ?>

@@ -144,4 +144,27 @@ function menos1(val) {
   } else {
     document.getElementById("cant" + val).value = 1
   }
+}  
+
+function buscarUsuario(){ 
+  var nombre = document.getElementById("nombre").value;
+  //location.href=  "../../controladores/user/buscar.php?correo="+correo
+  if(nombre==""){ 
+    /*document.getElementById("informacion").innerHTML=""; */
+    location.href = "usuarios.php"
+  }else{ 
+      if(window.XMLHttpRequest) { 
+          xmlhttp= new XMLHttpRequest(); 
+      }else{ 
+          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+      } 
+     xmlhttp.onreadystatechange= function(){ 
+          if(this.readyState == 4 && this.status == 200){ 
+              document.getElementById("informacion").innerHTML=this.responseText;
+          }
+      }; 
+      xmlhttp.open("GET","../../controladores/admin/buscarUsuarios.php?nombre="+nombre,true); 
+      xmlhttp.send();
+  } 
+  return false;
 }

@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -14,6 +15,9 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 <head>
     <meta charset="UTF-8">
     <title>Listar Sucursales</title>
+
+</head>
+<body>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
@@ -74,7 +78,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </header>
 
-    <h1> Listar Categoria </h1>
+    <h1> Listar Sucursal </h1>
 <br>
 
     <table style="width:100%" border="1">
@@ -102,6 +106,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         ?>
         </section>
     </table>
+
 
     <br>
 
@@ -147,6 +152,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
     </footer>
+
 </body>
 
 </html>

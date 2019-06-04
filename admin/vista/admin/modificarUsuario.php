@@ -79,7 +79,7 @@ $row = $result->fetch_assoc();
 
     <h1>Actualizar Usuario</h1>
     <?php
-    $codigo = $_GET["codigo"];
+    $codigo = $_GET['codigo'] ;
     include '../../../config/conexionBD.php';
     $sql = "SELECT * FROM fer_usuario where fer_usu_id=$codigo";
     $result = $conn->query($sql);
