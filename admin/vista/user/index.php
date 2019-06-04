@@ -36,7 +36,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                     <li><a href="">PEDIDOS</a>
                         <ul>
                             <li><a href="carrito.php">Crear Pedido</a></li>
-                            <li><a href="">....</a></li>
+                            <li><a href="listar_pedido.php">Listar Pedidos</a></li>
                         </ul>
                     </li>
                     <li><a href="">FACTURAS</a>
