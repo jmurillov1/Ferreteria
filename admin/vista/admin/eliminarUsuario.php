@@ -79,11 +79,8 @@ $row = $result->fetch_assoc();
 
     <?php
     include '../../../config/conexionBD.php';
-<<<<<<< HEAD
     $codigo = $_GET['codigo'] ;
-=======
     $codigo = $_GET["codigo"];
->>>>>>> 0615472e7e268dc9ef5929302e436c6adca227c7
     $sql = "SELECT * FROM fer_usuario where fer_usu_id=$codigo";
     $result = $conn->query($sql);
 

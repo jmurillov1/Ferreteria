@@ -19,19 +19,22 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
 <body>
 
-<?php
-include '../../../config/conexionBD.php';
-$codigo = $_SESSION['fer_usu_codigo'];
-$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-?>
+    <?php
+    include '../../../config/conexionBD.php';
+    $codigo = $_SESSION['fer_usu_codigo'];
+    $sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    ?>
 
-<header>
+    <header>
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li id="ul" ><a href="">PEDIDOS</a>
+                    <li id="ul"><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="listar_pedido.php">LISTAR</a></li>
+                        </ul>
                     </li>
                     <li id="ul"><a href="">FACTURAS</a>
                     </li>
@@ -39,8 +42,8 @@ $row = $result->fetch_assoc();
                     </li>
                     <li id="ul"><a href="">CATEGORIA</a>
                         <ul>
-                            <li><a href="crear_categoria.php">CREAR</a></li> 
-                            <li><a href="listar_categoria.php">LISTAR</a></li> 
+                            <li><a href="crear_categoria.php">CREAR</a></li>
+                            <li><a href="listar_categoria.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="ul"><a href="">SUCURSAL</a>
@@ -62,7 +65,7 @@ $row = $result->fetch_assoc();
                         </ul>
                     </li>
                     <li id="de"><a href="">
-                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
