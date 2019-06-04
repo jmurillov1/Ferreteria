@@ -19,6 +19,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 </head>
 
 <body>
+
+<?php
+include '../../../config/conexionBD.php';
+$codigo = $_SESSION['fer_usu_codigo'];
+$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+?>
+
 <header>
         <section>
             <nav id="moopio">
@@ -31,13 +40,13 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li id="ul"><a href="">CATEGORIA</a>
                         <ul>
-                            <li><a href="crear_categoria.html">CREAR</a></li>
+                            <li><a href="crear_categoria.php">CREAR</a></li>
                             <li><a href="listar_categoria.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
-                            <li><a href="crear_sucursal.html">CREAR</a></li>
+                            <li><a href="crear_sucursal.php">CREAR</a></li>
                             <li><a href="listar_sucursal.php">LISTAR</a></li>
                         </ul>
                     </li>
@@ -54,7 +63,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                         </ul>
                     </li>
                     <li id="de"><a href="">
-                            <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
