@@ -29,16 +29,16 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <?php
         include "../../../config/conexionBD.php"; 
         $codigo_cab=$_GET['codigo'];
-        $sql = "SELECT * FROM fer_pedido_detalle WHERE fer_ped_det_ped_cab_id = $codigo_cab";
+        $sql = "SELECT * FROM fer_factura_detalle WHERE fer_fac_det_fac_cab_id = $codigo_cab";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { 
-                $codigo_pro_suc = $row['fer_ped_det_suc_pro_id'];
-                $sql_pro_suc = "SELECT * from fer_sucursal_producto WHERE fer_suc_pro_id = $codigo_pro_suc";
+                $codigo_pro_suc = $row['fer_fac_det_suc_pro_id'];
+                $sql_pro_suc = "SELECT fer_suc_pro_suc_id from fer_sucursal_producto WHERE fer_suc_pro_id = $codigo_pro_suc";
                 $result2 = $conn->query($sql_pro_suc);
                 $row2 = $result2->fetch_assoc();  
 
-                $codigo_pro= $row2['fer_suc_pro_prod_id'];
+                $codigo_pro= $row2['fer_suc_pro_suc_id'];
                 $sql_pro = "SELECT fer_pro_nombre from fer_producto WHERE fer_pro_id = $codigo_pro";
                 $result3 = $conn->query($sql_pro);
                 $row3 = $result3->fetch_assoc();  

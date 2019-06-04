@@ -41,8 +41,8 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                     </li>
                     <li><a href="">FACTURAS</a>
                         <ul>
-                            <li>...</li>
-                            <li>...</li>
+                            <li><a href="crear_factura.php">Crear Factura</a></li>
+                            <li><a href="listar_facturas.php">Listar Facturas</a></li>
                         </ul>
                     </li>
                     <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
@@ -56,29 +56,29 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 </ul>
             </nav>
         </section>
-    </header>       
+    </header>
     <h1>Bienvenido Usuario</h1>
 
     <br>
 
-    
-        <label for="desc">Sucursal(*)</label>
-        <select id="" name="">
-            <option> Seleccione Sucursal</option>
-            <?php
-            //include '../../../config/conexionBD.php';
-            $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row2 = $result->fetch_assoc()) {
-                    $codigos = $row2["fer_suc_id"];
-                    $desc = $row2["fer_suc_direccion"];
-                    echo "<option id='item$codigos' onclick='val($codigos)' value='" . $codigos . "'>" . $desc . "</option>";
-                }
+
+    <label for="desc">Sucursal(*)</label>
+    <select id="" name="">
+        <option> Seleccione Sucursal</option>
+        <?php
+        //include '../../../config/conexionBD.php';
+        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row2 = $result->fetch_assoc()) {
+                $codigos = $row2["fer_suc_id"];
+                $desc = $row2["fer_suc_direccion"];
+                echo "<option id='item$codigos' onclick='val($codigos)' value='" . $codigos . "'>" . $desc . "</option>";
             }
-            ?>
-            <br>
-        </select>
+        }
+        ?>
+        <br>
+    </select>
 
     <br>
 

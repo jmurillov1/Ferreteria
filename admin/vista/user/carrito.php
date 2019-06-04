@@ -35,7 +35,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <h4>Productos</h4>
     </header>
     <a href="pedido_detalle.php" class="carr">
-        <h5 id='car'>Carrito<img id='imagen2' src='images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
+        <h5 id='car'>Carrito<img id='imagen2' src='../images/carrito.jpg' /> <input id='sel' value='<?php echo $tot ?>'> </h5>
     </a>
     <input autofocus type="text" id="correo" name="correo" value="" placeholder="Ingrese cédula para buscar" required onkeyup="buscarPorCorreo()" />
     <div id="info">
