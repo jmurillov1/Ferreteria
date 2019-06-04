@@ -208,13 +208,14 @@ function buscarUsuario() {
     };
     xmlhttp.open("GET", "../../controladores/admin/buscarUsuarios.php?nombre=" + nombre, true);
     xmlhttp.send();
+    return false;
   }
-  return false;
 }
 
 function confirmar() {
-  var total = Number(document.getElementById("total").value)
-  if (nombre == "") {
+  var total = Number(document.getElementById("tot").value).toFixed(2)
+  console.log(total)
+  if (total == "") {
   } else {
     if (window.XMLHttpRequest) {
       xmlhttp = new XMLHttpRequest();
@@ -224,10 +225,12 @@ function confirmar() {
     xmlhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         alert("Pedido Creado")
+        cancelar();
+        location.href = "index.php";
       }
     };
     xmlhttp.open("GET", "../controladores/crear_pedido.php?total=" + total, true);
     xmlhttp.send();
+    return false;
   }
-  return false;
 }
