@@ -95,6 +95,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             $tot = $tot + $row["fer_pdt_subtotal"];
         }
     }
+    echo "<a href='../vista/carrito.php'>Comprar</a>";
     ?>
     </table>
     <div>

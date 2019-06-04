@@ -7,17 +7,17 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Principal Usuario</title>
+    <title>Listar Categorias</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
-
 <body>
+
 <header>
         <section>
             <nav id="moopio">
@@ -63,14 +63,34 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </nav>
         </section>
     </header>
+    
+<table style="width:100%" border="1">
+        <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+        </tr>
+        <?php
+        include "../../../config/conexionBD.php";
+        $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el = 'N'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "   <td>" . $row['fer_cat_id'] . "</td>";
+                echo "   <td>" . $row['fer_cat_desc'] . "</td>";
+                echo "   <td>" . "<a href = 'actualizar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Actualizar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "</tr>";
+            }
+            $conn->close();
+        }
+        ?>
+        </section>
+    </table>
 
-
-    <h1>Bienvenido Admin</h1>
-
-
-
-
-
+    <br>
 
     <footer>
         <section id="pa">
@@ -115,5 +135,4 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </footer>
 </body>
-
 </html>

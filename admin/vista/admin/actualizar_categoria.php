@@ -12,7 +12,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Principal Usuario</title>
+    <title>Actualizar Categoria</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
@@ -63,16 +63,40 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             </nav>
         </section>
     </header>
+        
+    <h1>Actualizar Categoria</h1>
 
+    <section>
+    <?php
+    include "../../../config/conexionBD.php";
+    $codigo_cat = $_GET['codigo'];
+    $sql = "SELECT * FROM fer_categoria WHERE fer_cat_id = $codigo_cat AND fer_cat_el = 'N'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <form id="form" method="POST"  action="../../controladores/admin/actualizar_categoria.php">
+                <div class=" parte1">
+                    <input class="in" type="hidden" id="codigo" name="codigo" value="<?php echo $row['fer_cat_id']; ?>" />
+                    <br>
+                    <label for="desc">Descripción(*)</label>
+                    <input class="in" type="text" id="desc" name="desc" value="<?php echo $row["fer_cat_desc"]; ?>" />
+                    <br>
+                    <input class="in" type="submit" value="Actualizar" />
+                    <input class="in" type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+            </form>
+        <?php
+    }
+} else {
+    echo "<p>Ha ocurrido un error inesperado !</p>";
+    echo "<p>" . mysqli_error($conn) . "</p>";
+}
+$conn->close();
+?>
+</section>
 
-    <h1>Bienvenido Admin</h1>
-
-
-
-
-
-
-    <footer>
+<br>
+<footer>
         <section id="pa">
             <h2>
                 INFORMACIÓN DE CONTACTO

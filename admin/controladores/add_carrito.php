@@ -42,7 +42,7 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             while ($row = $result2->fetch_assoc()) {
                 if ($row["fer_pdt_suc_pro_id"] == $codigo) {
                     $canti = $row["fer_pdt_cant"] + $cantidad;
-                    $sql = "UPDATE fer_ped_det_temp SET fer_pdt_cant=$canti, fer_pdt_subtotal=$canti*$precio";
+                    $sql = "UPDATE fer_ped_det_temp SET fer_pdt_cant=$canti, fer_pdt_subtotal=$canti*$precio WHERE fer_pdt_suc_pro_id";
                     if ($conn->query($sql) === TRUE) {
                         echo "<p>Se ha actualizado los detalles correctamente !!!</p>";
                     } else {

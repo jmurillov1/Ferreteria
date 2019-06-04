@@ -45,11 +45,10 @@ function agregar(cod) {
       xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 & this.status == 200) {
           alert("llegue")
-          console.log("Realizado")
-        };
-        xmlhttp.open("GET", "../controladores/anadir_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true)
-        xmlhttp.send()
+        }
       }
+      xmlhttp.open("GET", "../controladores/add_carrito.php?codigo=" + cod + "&cantidad=" + ncant, true)
+      xmlhttp.send()
       return false
     }
   }
@@ -67,13 +66,13 @@ function actualizar(val) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 & this.status == 200) {
       //alert(this.responseText)
-      var total = 0;
+      var total = 0
       for (var i = 1; document.getElementById('tbl').rows[i]; i++) {
         total += Number(document.getElementById('tbl').rows[i].cells[5].innerHTML);
       }
-      document.getElementById('total').value = total.toFixed(2)
+      document.getElementById('tot').value = total.toFixed(2)
     }
-  };
+  }
   xmlhttp.open("GET", "../controladores/actualizar_carrito.php?codigo=" + val + "&cantidad=" + ncant, true)
   xmlhttp.send()
   return false

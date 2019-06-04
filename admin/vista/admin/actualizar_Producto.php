@@ -14,25 +14,31 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <meta charset="UTF-8">
     <title>Actualizar Producto</title>
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
-    <script type="text/javascript" src="../../controladores/js/funciones.js"></script>
 </head>
 
 <body>
-    <header>
+<header>
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li id="ul"><a href="">PEDIDOS</a>
+                    <li id="ul" ><a href="">PEDIDOS</a>
                     </li>
                     <li id="ul"><a href="">FACTURAS</a>
                     </li>
                     <li id="ul"><a href="usuarios.php">USUARIOS</a>
                     </li>
+                    <li id="ul"><a href="">CATEGORIA</a>
+                        <ul>
+                            <li><a href="crear_categoria.html">CREAR</a></li>
+                            <li><a href="listar_categoria.php">LISTAR</a></li>
+                        </ul>
+                    </li>
                     <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
-                            <li><a href="">LISTAR</a></li>
+                            <li><a href="crear_sucursal.html">CREAR</a></li>
+                            <li><a href="listar_sucursal.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="ul"><a href="">PRODUCTOS</a>
@@ -43,16 +49,13 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li><a href="">PRODUCTOS SUCURSAL</a>
                         <ul>
-                            <li><a href="">CREAR</a></li>
-                            <li><a href="">LISTAR</a></li>
+                            <li><a href="crear_suc_producto.php">CREAR</a></li>
+                            <li><a href="listar_suc_producto.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="de"><a href="">
                             <!--<img src="data:image/jpg;base64,php echo $foto ?>"  width="15" height=15 >--><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
-                            <li><a href="modificarUsuario.php">MODIFICAR</a></li>
-                            <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
-                            <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
                             <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
                         </ul>
                     </li>
@@ -62,6 +65,8 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
         </section>
     </header>
     <h1>Actualizar Producto</h1>
+
+
     <?php
     include "../../../config/conexionBD.php";
     $codigo_pro = $_GET['codigo'];
