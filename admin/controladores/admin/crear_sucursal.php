@@ -26,7 +26,7 @@
     }
     //cerrar la base de datos
     $conn->close();
-    echo "<a href='../../vista/admin/crear_sucursal.html'>Regresar</a>";
+    echo "<a href='../../vista/admin/crear_sucursal.php'>Regresar</a>";
     ?>
 </body>
 
