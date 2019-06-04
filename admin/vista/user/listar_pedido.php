@@ -66,7 +66,6 @@ $row = $result->fetch_assoc();
             <th>Estado</th>
             <th>Total</th> 
             <th>Ver</th> 
-            <th>Actualizar</th> 
             <th>Eliminar</th>
         </tr>
         <?php
@@ -91,7 +90,6 @@ $row = $result->fetch_assoc();
                 echo "   <td>" . $row['fer_ped_cab_estado'] . "</td>"; 
                 echo "   <td>" . $row['fer_ped_cab_total'] . "</td>"; 
                 echo "   <td>" . "<a href = 'ver_pedido.php?codigo=" . $row['fer_ped_cab_id'] . "'>" . "Ver</a>" . "</td>";
-                echo "   <td>" . "<a href = 'actualizar_pedido_cabecera.php?codigo=" . $row['fer_ped_cab_id'] . "'>" . "Actualizar</a>" . "</td>";
                 echo "   <td>" . "<a href = '../../controladores/admin/eliminar_producto.php?codigo=" . $row['fer_ped_cab_id'] . "'>" . "Eliminar</a>" . "</td>";
                 echo "</tr>";
             }
