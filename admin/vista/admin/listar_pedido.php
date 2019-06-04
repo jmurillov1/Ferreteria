@@ -15,10 +15,71 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Listar Pedidos</title>
+    <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
+    <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
 
 <body>
-    <table style="width:100%" border="1" id="informacion">
+
+<?php
+include '../../../config/conexionBD.php';
+$codigo = $_SESSION['fer_usu_codigo'];
+$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+?>
+
+<header>
+        <section>
+            <nav id="moopio">
+                <ul id="menuPrincipal">
+                <li id="ul"><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="listar_pedido.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="ul"><a href="">FACTURAS</a>
+                    </li>
+                    <li id="ul"><a href="usuarios.php">USUARIOS</a>
+                    </li>
+                    <li id="ul"><a href="">CATEGORIA</a>
+                        <ul>
+                            <li><a href="crear_categoria.php">CREAR</a></li>
+                            <li><a href="listar_categoria.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="ul"><a href="">SUCURSAL</a>
+                        <ul>
+                            <li><a href="crear_sucursal.php">CREAR</a></li>
+                            <li><a href="listar_sucursal.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="ul"><a href="">PRODUCTOS</a>
+                        <ul>
+                            <li><a href="crear_producto.php">CREAR</a></li>
+                            <li><a href="listar_productos.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">PRODUCTOS SUCURSAL</a>
+                        <ul>
+                            <li><a href="crear_suc_producto.php">CREAR</a></li>
+                            <li><a href="listar_suc_producto.php">LISTAR</a></li>
+                        </ul>
+                    </li>
+                    <li id="de"><a href="">
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                        <ul>
+                            <li><a href="../../../config/cerrarSesionAdmin.php">CERRAR SESION</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+
+<table style="width:100%" border="1" id="informacion">
         <tr>
             <th>Usuario</th>
             <th>Sucursal</th>

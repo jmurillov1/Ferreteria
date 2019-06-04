@@ -31,7 +31,10 @@ $row = $result->fetch_assoc();
         <section>
             <nav id="moopio">
                 <ul id="menuPrincipal">
-                    <li id="ul" ><a href="">PEDIDOS</a>
+                <li id="ul"><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="listar_pedido.php">LISTAR</a></li>
+                        </ul>
                     </li>
                     <li id="ul"><a href="">FACTURAS</a>
                     </li>

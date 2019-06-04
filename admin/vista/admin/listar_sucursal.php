@@ -37,8 +37,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
             <section>
                 <nav id="moopio">
                     <ul id="menuPrincipal">
-                        <li id="ul"><a href="">PEDIDOS</a>
-                        </li>
+                    <li id="ul"><a href="">PEDIDOS</a>
+                        <ul>
+                            <li><a href="listar_pedido.php">LISTAR</a></li>
+                        </ul>
+                    </li>
                         <li id="ul"><a href="">FACTURAS</a>
                         </li>
                         <li id="ul"><a href="usuarios.php">USUARIOS</a>
