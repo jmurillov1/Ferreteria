@@ -56,67 +56,74 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
                 </ul>
             </nav>
         </section>
-    </header>
+    </header>       
     <h1>Bienvenido Usuario</h1>
 
-    <label for="desc">Sucursal(*)</label>
-    <select id="cat" name="cat">
-        <option> Seleccione Sucursal</option>
-        <?php
-        include '../../../config/conexionBD.php';
-        $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row2 = $result->fetch_assoc()) {
-                $codigos = $row2["fer_suc_id"];
-                $desc = $row2["fer_suc_direccion"];
-                echo "<option id='item$codigos' onclick='val($codigos)' value='" . $codigos . "'>" . $desc . "</option>";
+    <br>
+
+    
+        <label for="desc">Sucursal(*)</label>
+        <select id="" name="">
+            <option> Seleccione Sucursal</option>
+            <?php
+            //include '../../../config/conexionBD.php';
+            $sql = "SELECT * FROM fer_sucursal WHERE fer_suc_el='N';";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row2 = $result->fetch_assoc()) {
+                    $codigos = $row2["fer_suc_id"];
+                    $desc = $row2["fer_suc_direccion"];
+                    echo "<option id='item$codigos' onclick='val($codigos)' value='" . $codigos . "'>" . $desc . "</option>";
+                }
             }
-        }
-        ?>
+            ?>
+            <br>
+        </select>
 
-        <footer>
-            <section id="pa">
-                <h2>
-                    INFORMACIÓN DE CONTACTO
-                </h2>
-                <h3>
-                    DIRECCION
-                </h3>
-                <h4>
-                    Av. Gil Ramirez Davalos y Eliat Liut
-                </h4>
-                <h3>
-                    TELEFONO
-                </h3>
-                <h3>
-                    0981241115 - 0989224223
-                </h3>
-                <h3>
-                    EMAIL
-                </h3>
-                <h4>
-                    servicio@tupernoferreteria.com
-                </h4>
+    <br>
 
-            </section>
+    <footer>
+        <section id="pa">
+            <h2>
+                INFORMACIÓN DE CONTACTO
+            </h2>
+            <h3>
+                DIRECCION
+            </h3>
+            <h4>
+                Av. Gil Ramirez Davalos y Eliat Liut
+            </h4>
+            <h3>
+                TELEFONO
+            </h3>
+            <h3>
+                0981241115 - 0989224223
+            </h3>
+            <h3>
+                EMAIL
+            </h3>
+            <h4>
+                servicio@tupernoferreteria.com
+            </h4>
 
-            <section id="fot">
-                <h2>REDES SOCIALES</h1>
-                    <div>
-                        <ul>
-                            <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
-                            <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
-                            <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
-                            <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
-                        </ul>
-                    </div>
-            </section>
+        </section>
 
-            <section id="fot1">
-                <h2> &copy; Copyright 2019 Powered by MurilloJ, AñazcoN, BenavidezA </h1>
-            </section>
-        </footer>
+        <section id="fot">
+            <h2>REDES SOCIALES</h1>
+                <div>
+                    <ul>
+                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                    </ul>
+                </div>
+        </section>
+
+        <section id="fot1">
+            <h2> &copy; Copyright 2019 Powered by MurilloJ, AñazcoN, BenavidezA </h1>
+        </section>
+    </footer>
 </body>
 
 </html>

@@ -16,7 +16,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
 <body>
     <?php
-    //incluir conexión a la base de datos
+//incluir conexión a la base de datos
     include '../../../config/conexionBD.php';
     $codigo = $_POST['codigo'];
     $codigo = $_SESSION['fer_usu_codigo'];

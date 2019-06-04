@@ -101,7 +101,7 @@ $row = $result->fetch_assoc();
                 echo "   <td>" . $row['fer_cat_id'] . "</td>";
                 echo "   <td>" . $row['fer_cat_desc'] . "</td>";
                 echo "   <td>" . "<a href = 'actualizar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_categoria34.php?codigo=" . $row['fer_cat_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Eliminar</a>" . "</td>";
                 echo "</tr>";
             }
             $conn->close();
