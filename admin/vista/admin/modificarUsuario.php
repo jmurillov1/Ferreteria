@@ -66,7 +66,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
     <h1>Actualizar Usuario</h1>
     <?php
-    $codigo = $_GET["codigo"];
+    $codigo = $_SESSION['fer_usu_codigo'] ;
     include '../../../config/conexionBD.php';
     $sql = "SELECT * FROM fer_usuario where fer_usu_id=$codigo";
     $result = $conn->query($sql);

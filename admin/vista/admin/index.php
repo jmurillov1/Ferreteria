@@ -30,13 +30,14 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
                     </li>
                     <li id="ul"><a href="">CATEGORIA</a>
                         <ul>
-                            <li><a href="../crear_categoria.html">CREAR</a></li>
+                            <li><a href="../crear_categoria.html">CREAR</a></li> 
+                            <li><a href="listar_categoria.php">LISTAR</a></li> 
                         </ul>
                     </li>
                     <li id="ul"><a href="">SUCURSAL</a>
                         <ul>
                             <li><a href="../crear_sucursal.html">CREAR</a></li>
-                            <li><a href="">LISTAR</a></li>
+                            <li><a href="listar_sucursal.php">LISTAR</a></li>
                         </ul>
                     </li>
                     <li id="ul"><a href="">PRODUCTOS</a>
