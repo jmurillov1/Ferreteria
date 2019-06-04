@@ -24,30 +24,10 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
     $telefono = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
     $correo = isset($_POST["correo"]) ? trim($_POST["correo"]) : null;
     $fechaNacimiento = isset($_POST["fechaNacimiento"]) ? trim($_POST["fechaNacimiento"]) : null;
-    $imagen = addslashes(file_get_contents($_FILES['uploadImage1']["tmp_name"]));
-    if ($imagen == null) {
-        date_default_timezone_set("America/Guayaquil");
-        $fecha = date('Y-m-d H:i:s', time());
-        $sql = "UPDATE fer_usuario " .
-            "SET fer_usu_cedula = '$cedula', " .
-            "fer_usu_nombres = '$nombres', " .
-            "fer_usu_apellidos = '$apellidos', " .
-            "fer_usu_direccion = '$direccion', " .
-            "fer_usu_telefono = '$telefono', " .
-            "fer_usu_correo = '$correo', " .
-            "fer_usu_fecha_nac = '$fechaNacimiento', " .
-            "fer_usu_mod = '$fecha' " .
-            "WHERE fer_usu_id = $codigo";
-        if ($conn->query($sql) === TRUE) {
-            echo "Se ha actualizado los datos personales correctamemte!!!<br>";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
-        }
-        echo "<a href='../../vista/user/index.php'>Regresar</a>";
-        $conn->close();
-    } else {
-        date_default_timezone_set("America/Guayaquil");
-        $fecha = date('Y-m-d H:i:s', time());
+    date_default_timezone_set("America/Guayaquil"); 
+    $fecha = date('Y-m-d H:i:s', time());
+    if ($_FILES['uploadImage1']["tmp_name"] != null) {
+        $imagen = addslashes(file_get_contents($_FILES['uploadImage1']["tmp_name"]));
         $sql = "UPDATE fer_usuario " .
             "SET fer_usu_cedula = '$cedula', " .
             "fer_usu_nombres = '$nombres', " .
@@ -59,16 +39,26 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
             "fer_usu_foto = '$imagen', " .
             "fer_usu_mod = '$fecha' " .
             "WHERE fer_usu_id = $codigo";
-        if ($conn->query($sql) === TRUE) {
-            echo "Se ha actualizado los datos personales correctamemte!!!<br>";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
-        }
-        echo "<a href='../../vista/user/index.php'>Regresar</a>";
-        $conn->close();
+    } else {
+        $sql = "UPDATE fer_usuario " .
+            "SET fer_usu_cedula = '$cedula', " .
+            "fer_usu_nombres = '$nombres', " .
+            "fer_usu_apellidos = '$apellidos', " .
+            "fer_usu_direccion = '$direccion', " .
+            "fer_usu_telefono = '$telefono', " .
+            "fer_usu_correo = '$correo', " .
+            "fer_usu_fecha_nac = '$fechaNacimiento', " .
+            "fer_usu_mod = '$fecha' " .
+            "WHERE fer_usu_id = $codigo";
     }
 
-
+    if ($conn->query($sql) === TRUE) {
+        echo "Se ha actualizado los datos personales correctamemte!!!<br>";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
+    }
+    echo "<a href='../../vista/user/index.php'>Regresar</a>";
+    $conn->close();
     ?>
 </body>
 
