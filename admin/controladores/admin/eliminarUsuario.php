@@ -1,5 +1,6 @@
 <?php
 session_start();
+$Cod = $_SESSION['fer_usu_codigo'];
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     header("Location: /Ferreteria/public/vista/login.html");
 }
@@ -29,7 +30,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     } else {
         echo "<p>Error: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
     }
-    echo "<a href='../../../public/vista/login.html'>Regresar</a>";
+    if ($codigo == $Cod) {
+        echo "<a href='../../../public/vista/login.html'>Regresar</a>";
+    } else {
+        echo "<a href='../../vista/admin/usuarios.php'>Regresar</a>";
+    }
     $conn->close();
     ?>
 </body>

@@ -70,7 +70,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 
     <?php
     include '../../../config/conexionBD.php';
-    $codigo = $_SESSION["fer_usu_codigo"];
+    $codigo = $_GET["codigo"];
     $sql = "SELECT * FROM fer_usuario where fer_usu_id=$codigo";
     $result = $conn->query($sql);
 
