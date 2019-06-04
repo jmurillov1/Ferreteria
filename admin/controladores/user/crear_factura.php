@@ -21,21 +21,21 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
         <?php
         include '../../../config/conexionBD.php';
         $codigoc = $_GET["codigo"];
-        $cont = 0;
+        $val = false;
         date_default_timezone_set("America/Guayaquil");
 
         $sqlc = "SELECT * FROM fer_factura_cabecera";
         $resultc = $conn->query($sqlc);
         if ($resultc->num_rows > 0) {
             while ($rowc = $resultc->fetch_assoc()) {
-                if ($rowc['fer_fac_cab_ped_cab_id'] !== $codigoc) {
-                    $cont = $cont + 1;
-                } else {
+                if ($rowc['fer_fac_cab_ped_cab_id'] !== $codigoc) { } else {
+                    $val = true;
                     echo "Ya existe esta Factura";
                 }
             }
         }
-        if ($cont == 0) {
+        echo $val;
+        if ($val == false) {
             $sql2 = "SELECT * FROM fer_pedido_cabecera WHERE fer_ped_cab_id=$codigoc";
             $result2 = $conn->query($sql2);
             $row = $result2->fetch_assoc();

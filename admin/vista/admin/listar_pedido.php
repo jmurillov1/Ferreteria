@@ -108,7 +108,7 @@ $row = $result->fetch_assoc();
                 echo "<tr>";
                 echo "   <td>" . $row2['fer_usu_nombres'] . "</td>";
                 echo "   <td>" . $row3['fer_suc_direccion'] . "</td>";
-                echo "   <td>" . $row['fer_ped_cad_estado'] . "</td>"; 
+                echo "   <td>" . $row['fer_ped_cab_estado'] . "</td>"; 
                 echo "   <td>" . $row['fer_ped_cab_total'] . "</td>"; 
                 echo "   <td>" . "<a href = 'ver_pedido.php?codigo=" . $row['fer_ped_cab_id'] . "'>" . "Ver</a>" . "</td>";
                 echo "   <td>" . "<a href = 'actualizar_pedido_cabecera.php?codigo=" . $row['fer_ped_cab_id'] . "'>" . "Actualizar</a>" . "</td>";
