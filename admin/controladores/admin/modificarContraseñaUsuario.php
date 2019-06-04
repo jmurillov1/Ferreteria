@@ -18,8 +18,10 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     //incluir conexión a la base de datos
     include '../../../config/conexionBD.php';
     $codigo = $_POST["codigo"];
-    $contrasena1 = isset($_POST["contrasena1"]) ? trim($_POST["contrasena1"]) : null;
-    $contrasena2 = isset($_POST["contrasena2"]) ? trim($_POST["contrasena2"]) : null;
+    $contrasena1 = isset($_POST["contrasena1"]) ? trim($_POST["contrasena1"]) : null; 
+    echo $contrasena1;
+    $contrasena2 = isset($_POST["contrasena2"]) ? trim($_POST["contrasena2"]) : null; 
+    echo $contrasena2;
     $sqlContrasena1 = "SELECT * FROM fer_usuario where fer_usu_id = $codigo and fer_usu_password= MD5('$contrasena1')";
     $result1 = $conn->query($sqlContrasena1);
     if ($result1->num_rows > 0) {

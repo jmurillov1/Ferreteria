@@ -136,6 +136,7 @@ function menos1(val) {
   } else {
     document.getElementById("cant" + val).value = 1
   }
+<<<<<<< HEAD
 }
 
 function eliminar(cod) {
@@ -174,4 +175,29 @@ function listarps(cod) {
   xmlhttp.open("GET", "../controladores/listar_producto_sucursal.php?codigo=" + cod, true)
   xmlhttp.send()
   return false
+=======
+}  
+
+function buscarUsuario(){ 
+  var nombre = document.getElementById("nombre").value;
+  //location.href=  "../../controladores/user/buscar.php?correo="+correo
+  if(nombre==""){ 
+    /*document.getElementById("informacion").innerHTML=""; */
+    location.href = "usuarios.php"
+  }else{ 
+      if(window.XMLHttpRequest) { 
+          xmlhttp= new XMLHttpRequest(); 
+      }else{ 
+          xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+      } 
+     xmlhttp.onreadystatechange= function(){ 
+          if(this.readyState == 4 && this.status == 200){ 
+              document.getElementById("informacion").innerHTML=this.responseText;
+          }
+      }; 
+      xmlhttp.open("GET","../../controladores/admin/buscarUsuarios.php?nombre="+nombre,true); 
+      xmlhttp.send();
+  } 
+  return false;
+>>>>>>> 980e3771039b6515b4f308247d89cf1789bd4bb4
 }

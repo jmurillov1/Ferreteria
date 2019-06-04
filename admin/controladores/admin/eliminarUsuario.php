@@ -19,7 +19,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
     //incluir conexión a la base de datos
     include '../../../config/conexionBD.php';
     $codigo = $_POST['codigo'];
-
+    $codigo = $_SESSION['fer_usu_codigo'];
     //Si voy a eliminar físicamente el registro de la tabla
     //$sql = "DELETE FROM usuario WHERE codigo = '$codigo'";
     date_default_timezone_set("America/Guayaquil");

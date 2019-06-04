@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $nombre = $_SESSION['fer_usu_nombres'];
@@ -8,11 +9,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] === FALSE) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Listar Categorias</title>
+
+</head>
+
     <link href="../../../public/vista/css/estilo.css" rel="stylesheet" />
     <a href="index.php"><img id="cen" src="../../../public/imagenes/logo.png"></a>
 </head>
@@ -72,6 +77,13 @@ $row = $result->fetch_assoc();
         </section>
     </header>
     
+<br>
+
+<h1>Listar Categoria</h1>
+        
+    <br>
+
+    <section>
 <table style="width:100%" border="1">
         <tr>
             <th>Codigo</th>
@@ -89,7 +101,7 @@ $row = $result->fetch_assoc();
                 echo "   <td>" . $row['fer_cat_id'] . "</td>";
                 echo "   <td>" . $row['fer_cat_desc'] . "</td>";
                 echo "   <td>" . "<a href = 'actualizar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Actualizar</a>" . "</td>";
-                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_categoria.php?codigo=" . $row['fer_cat_id'] . "'>" . "Eliminar</a>" . "</td>";
+                echo "   <td>" . "<a href = '../../controladores/admin/eliminar_categoria34.php?codigo=" . $row['fer_cat_id'] . "'>" . "Eliminar</a>" . "</td>";
                 echo "</tr>";
             }
             $conn->close();
@@ -97,6 +109,9 @@ $row = $result->fetch_assoc();
         ?>
         </section>
     </table>
+    </section>
+
+
 
     <br>
 
@@ -142,5 +157,6 @@ $row = $result->fetch_assoc();
             <h2>&copy; Copyright 2019 Powered by MurilloJ, A&ntilde;azcoN, BenavidezA </h1>
         </section>
     </footer>
+
 </body>
 </html>

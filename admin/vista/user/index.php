@@ -20,13 +20,13 @@ if (!isset($_SESSION['isUser']) || $_SESSION['isUser'] === FALSE) {
 
 <body>
 
-<?php
-include '../../../config/conexionBD.php';
-$codigo = $_SESSION['fer_usu_codigo'];
-$sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-?>
+    <?php
+    include '../../../config/conexionBD.php';
+    $codigo = $_SESSION['fer_usu_codigo'];
+    $sql = "SELECT fer_usu_foto from fer_usuario where fer_usu_id = $codigo";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    ?>
     <header>
         <section>
             <nav id="moopio">
@@ -43,18 +43,12 @@ $row = $result->fetch_assoc();
                             <li>...</li>
                         </ul>
                     </li>
-                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>"  width="15" height=15 ><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
+                    <li id="de"><a href=""><img src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="15" height=15><?php echo $nombre . ' ' . substr($apellido, 0, 1) . '.' ?></a>
                         <ul>
                             <li><a href="modificarUsuario.php">MODIFICAR</a></li>
                             <li><a href="modificarContraseñaUsuario.php">ACT. CONTRA..</a></li>
                             <li><a href="eliminarUsuario.php">ELIMINAR</a></li>
                             <li><a href="../../../config/cerrarSesionUser.php">CERRAR SESION</a></li>
-                        </ul>
-                    </li>
-                    <li id="de"><a href="">SUCURSAL</a>
-                        <ul>
-                            <li><a href="">....</a></li>
-                            <li><a href="">....</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -65,51 +59,69 @@ $row = $result->fetch_assoc();
 
 
 
+    <label for="desc">Categoria(*)</label>
+    <select id="cat" name="cat">
+        <option value="seleccione Categoria"></option>
+        <?php
+        include '../../../config/conexionBD.php';
+        $sql = "SELECT * FROM fer_categoria WHERE fer_cat_el='N';";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row2 = $result->fetch_assoc()) {
+                $codigo = $row2["fer_cat_id"];
+                $desc = $row2["fer_cat_desc"];
+                if ($row["fer_cat_id"] == $codigo) {
+                    echo "<option value='" . $codigo . "'selected>" . $desc . "</option>";
+                } else {
+                    echo "<option  value='" . $codigo . "'>" . $desc . "</option>";
+                }
+            }
+        }
+        ?>
 
 
+        <footer>
+            <section id="pa">
+                <h2>
+                    INFORMACIÓN DE CONTACTO
+                </h2>
+                <h3>
+                    DIRECCION
+                </h3>
+                <h4>
+                    Av. Gil Ramirez Davalos y Eliat Liut
+                </h4>
+                <h3>
+                    TELEFONO
+                </h3>
+                <h3>
+                    0981241115 - 0989224223
+                </h3>
+                <h3>
+                    EMAIL
+                </h3>
+                <h4>
+                    servicio@tupernoferreteria.com
+                </h4>
 
-    <footer>
-        <section id="pa">
-            <h2>
-                INFORMACIÓN DE CONTACTO
-            </h2>
-            <h3>
-                DIRECCION
-            </h3>
-            <h4>
-                Av. Gil Ramirez Davalos y Eliat Liut
-            </h4>
-            <h3>
-                TELEFONO
-            </h3>
-            <h3>
-                0981241115 - 0989224223
-            </h3>
-            <h3>
-                EMAIL
-            </h3>
-            <h4>
-                servicio@tupernoferreteria.com
-            </h4>
+            </section>
 
-        </section>
+            <section id="fot">
+                <h2>REDES SOCIALES</h1>
+                    <div>
+                        <ul>
+                            <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
+                            <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
+                            <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
+                            <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
+                        </ul>
+                    </div>
+            </section>
 
-        <section id="fot">
-            <h2>REDES SOCIALES</h1>
-                <div>
-                    <ul>
-                        <li><a href="https://www.facebook.com/niko.anazco.1" target="_blank"><img src="../../../public/imagenes/fac.png" width=80px heidth=180px></a></li>
-                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="../../../public/imagenes/cor.png" width=80px heidth=120px></a></li>
-                        <li><a href="https://twitter.com/Nik_Augusto?lang=es" target="_blank"><img src="../../../public/imagenes/twi.png" width=80px heidth=100px></a></li>
-                        <li><a href="https://www.instagram.com/nikoap77/" target="_blank"><img src="../../../public/imagenes/ins.png" width=80px heidth=100px></a></li>
-                    </ul>
-                </div>
-        </section>
-
-        <section id="fot1">
-            <h2> &copy; Copyright 2019 Powered by MurilloJ, AñazcoN, BenavidezA </h1>
-        </section>
-    </footer>
+            <section id="fot1">
+                <h2> &copy; Copyright 2019 Powered by MurilloJ, AñazcoN, BenavidezA </h1>
+            </section>
+        </footer>
 </body>
 
 </html>
