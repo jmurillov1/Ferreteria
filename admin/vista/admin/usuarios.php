@@ -99,9 +99,9 @@ $row = $result->fetch_assoc();
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
+                echo "<tr>"
                 ?>
-                <td> <img id="uploadPreview1" name="uploadPreview1" class="imag" src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="40" height="40"> </td>;
+                <td> <img id="uploadPreview1" name="uploadPreview1" class="imag" src="data:image/jpg;base64,<?php echo base64_encode($row['fer_usu_foto']) ?>" width="40" height="40"> </td>
                 <?php
                 echo "   <td>" . $row['fer_usu_cedula'] . "</td>";
                 echo "   <td>" . $row['fer_usu_nombres'] . "</td>";
@@ -126,7 +126,7 @@ $row = $result->fetch_assoc();
     </table>
 
 
-
+<br>
 
 
     <footer>
